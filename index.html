@@ -75,6 +75,7 @@ strong{font-weight:700}
 .cols-3{grid-template-columns:1fr 1fr 1fr}
 .cols-4{grid-template-columns:repeat(4,1fr)}
 .stack{display:flex;flex-direction:column;gap:4mm}
+.cols > .stack > .box:last-child,.cols > .stack > .dgbox:last-child{flex:1}
 .box{border:.8pt solid var(--linha);padding:5mm 5.5mm;display:flex;flex-direction:column;gap:2mm}
 .box.fill{background:var(--azul-claro);border-color:transparent}
 .box.bluebg{background:var(--azul);color:#fff;border-color:transparent}
@@ -304,12 +305,20 @@ strong{font-weight:700}
   <header class="head"><img class="sym" src="assets/simbolo.png" alt=""><span class="sec">Quem somos</span></header>
   <p class="eyebrow" style="margin-bottom:3mm">Norte Sul + Metropolitana Ambiental</p>
   <h2 style="max-width:150mm">Trinta e cinco anos olhando para o lado da cidade que ninguém vê.</h2>
-  <div class="cols cols-2" style="margin-top:8mm">
+  <div class="cols cols-2" style="margin-top:6mm">
     <div class="stack">
       <p class="lead">A Norte Sul Hidrotecnologia e Comércio foi fundada em 22 de junho de 1990 e, desde o primeiro dia, dedicou-se ao saneamento. O foco sempre foi a manutenção dos sistemas que sustentam a rotina urbana: drenagem de águas pluviais, esgotamento sanitário e distribuição de água.</p>
-      <p>Ao longo do tempo, a atuação cresceu do serviço de limpeza para o ciclo completo de cuidado com a rede: zeladoria urbana, cadastro, inspeção de tubulações, diagnóstico e prognóstico de pontos críticos e gestão técnico-operacional dos sistemas.</p>
-      <p>A Metropolitana Ambiental é a empresa aliada. Ela concentra a aplicação de tecnologias não destrutivas, executando obras com o mínimo de impacto na vida da cidade e ajudando a reduzir perdas de água. As duas operam de forma integrada, somando equipes, frota e tecnologia. Para o cliente, isso significa um único interlocutor, do diagnóstico à entrega da rede recuperada.</p>
-      <p>Trabalhamos principalmente com prefeituras, subprefeituras, autarquias e concessionárias de saneamento, por contrato direto ou licitação, com estrutura própria para atender medições, relatórios e exigências de fiscalização.</p>
+      <p>Com o tempo, a atuação cresceu da limpeza para o ciclo completo: zeladoria, cadastro, inspeção, diagnóstico e gestão técnico-operacional dos sistemas.</p>
+      <p>A Metropolitana Ambiental é a empresa aliada, focada em tecnologias não destrutivas. As duas operam integradas, somando equipes, frota e tecnologia. Para o cliente, um único interlocutor, do diagnóstico à entrega da rede recuperada.</p>
+      <h4 class="blue" style="margin-top:2mm">Quem faz o quê</h4>
+      <div class="box" style="gap:2mm;padding:4mm 4.5mm">
+      <div style="display:flex;align-items:center;gap:3mm"><img src="assets/simbolo.png" alt="" style="height:7mm;width:auto"><h3 style="font-size:11pt">Norte Sul Hidrotecnologia</h3></div>
+      <p style="font-size:8.8pt">Manutenção e operação de redes: limpeza mecanizada, videoinspeção, cadastro, gestão de O&amp;M e emergências. A frota de hidrojato, sucção e reciclador é dela.</p>
+    </div>
+      <div class="box" style="gap:2mm;padding:4mm 4.5mm">
+      <div style="display:flex;align-items:center;gap:3mm"><img src="assets/metropolitana.png" alt="" style="height:8mm;width:auto"><h3 style="font-size:11pt">Metropolitana Ambiental</h3></div>
+      <p style="font-size:8.8pt">Tecnologias não destrutivas: reabilitação por CIPP-UV, obras com o mínimo de impacto na cidade e redução de perdas de água. Entra quando limpar não basta.</p>
+    </div>
     </div>
     <div class="stack">
       <div class="box fill">
@@ -554,7 +563,7 @@ strong{font-weight:700}
     </div>
     <div class="stack">
       <h4 class="blue">Causas mais comuns que atendemos</h4>
-      <div class="feats one" style="gap:4mm">
+      <div class="feats one" style="gap:5.5mm">
         <div class="f"><svg class="ic"><use href="#i-filter"/></svg><div><h3>Gordura</h3><p>Acúmulo nas paredes do tubo em trechos próximos a comércio e restaurantes. Removida com hidrojato e bico rotativo.</p></div></div>
         <div class="f"><svg class="ic"><use href="#i-leaf"/></svg><div><h3>Raízes</h3><p>Entram pelas juntas e crescem dentro da rede. Cortadas com bico específico e registradas para reabilitação futura.</p></div></div>
         <div class="f"><svg class="ic"><use href="#i-layers"/></svg><div><h3>Areia e sedimento</h3><p>Baixa declividade ou infiltração de solo. Sucção a vácuo e verificação da junta que permitiu a entrada.</p></div></div>
@@ -563,14 +572,14 @@ strong{font-weight:700}
       </div>
     </div>
   </div>
-  <h4 class="blue" style="margin-top:8mm;margin-bottom:4mm">Como funciona o atendimento</h4>
+  <h4 class="blue" style="margin-top:12mm;margin-bottom:5mm">Como funciona o atendimento</h4>
   <div class="steps">
     <div class="st"><svg class="ic sm"><use href="#i-phone"/></svg><b>OCORRÊNCIA</b><span>Chamado do cliente ou rota programada de manutenção.</span></div>
     <div class="st"><svg class="ic sm"><use href="#i-camera"/></svg><b>DIAGNÓSTICO</b><span>Periscópio ou vídeo aponta a causa e o ponto exato.</span></div>
     <div class="st"><svg class="ic sm"><use href="#i-truck"/></svg><b>INTERVENÇÃO</b><span>Hidrojato, sucção ou kit compacto, conforme o acesso.</span></div>
     <div class="st"><svg class="ic sm"><use href="#i-doc"/></svg><b>ENTREGA</b><span>Rede liberada, registro fotográfico e medição.</span></div>
   </div>
-  <div class="box fill" style="margin-top:7mm">
+  <div class="box fill" style="margin-top:10mm;padding:6mm 6.5mm">
     <p class="eyebrow">Como definimos a frequência da preventiva</p>
     <div class="cols cols-3" style="gap:5mm">
       <div class="f"><svg class="ic sm"><use href="#i-clock"/></svg><div><p class="small"><strong>Histórico.</strong> Trechos com chamados repetidos entram em rota com intervalo menor.</p></div></div>
@@ -747,6 +756,16 @@ strong{font-weight:700}
       <div class="box bluebg">
         <div style="display:flex;align-items:center;gap:3mm"><svg class="ic"><use href="#i-flag"/></svg><p class="eyebrow">Caso · SANASA Campinas</p></div>
         <p>Renovação de três trechos de tubulação cerâmica de 150 mm em Campinas, SP, a serviço da SANASA, pelo método CIPP-UV. A rede antiga recebeu o novo tubo estrutural sem nenhuma abertura de vala, recuperando eficiência hidráulica e vida útil da infraestrutura existente.</p>
+        <dl class="spec" style="color:#fff;margin-top:2mm">
+          <dt style="color:#fff">Cliente</dt><dd>SANASA, Sociedade de Abastecimento de Água e Saneamento</dd>
+          <dt style="color:#fff">Local</dt><dd>Campinas, SP</dd>
+          <dt style="color:#fff">Rede</dt><dd>Esgoto, tubulação cerâmica</dd>
+          <dt style="color:#fff">Diâmetro</dt><dd>150 mm</dd>
+          <dt style="color:#fff">Escopo</dt><dd>Três trechos entre poços de visita</dd>
+          <dt style="color:#fff">Método</dt><dd>CIPP com cura por luz ultravioleta</dd>
+          <dt style="color:#fff">Vala aberta</dt><dd>Nenhuma</dd>
+        </dl>
+        <div class="tags" style="margin-top:2mm"><span class="tag" style="border-color:#fff;color:#fff">CIPP-UV</span><span class="tag" style="border-color:#fff;color:#fff">Esgoto</span><span class="tag" style="border-color:#fff;color:#fff">Sem vala</span></div>
       </div>
     </div>
     <div class="stack">
@@ -910,11 +929,15 @@ strong{font-weight:700}
   <div class="cols cols-2" style="margin-top:8mm">
     <div class="stack">
       <h4 class="blue">O que atendemos</h4>
-      <div class="feats one" style="gap:3.5mm">
+      <div class="feats one" style="gap:6mm">
         <div class="f"><svg class="ic"><use href="#i-wave"/></svg><div><h3>Alagamento e enchente</h3><p>Desobstrução imediata de bocas de lobo e galerias no ponto crítico, sucção de água acumulada e limpeza do trecho após a chuva.</p></div></div>
         <div class="f"><svg class="ic"><use href="#i-alert"/></svg><div><h3>Extravasamento de esgoto</h3><p>Desobstrução da rede coletora ou do ramal, limpeza da via e registro da causa para correção definitiva.</p></div></div>
         <div class="f"><svg class="ic"><use href="#i-layers"/></svg><div><h3>Colapso de galeria</h3><p>Isolamento da área, avaliação por vídeo, limpeza do trecho e encaminhamento para reparo ou CIPP-UV.</p></div></div>
         <div class="f"><svg class="ic"><use href="#i-road"/></svg><div><h3>Obstrução em via pública</h3><p>Retirada de entulho e objetos de bocas de lobo, caixas e travessias que bloqueiam o escoamento.</p></div></div>
+      </div>
+      <div class="box fill">
+        <p class="eyebrow">Chuva forte prevista?</p>
+        <p class="small">Com alerta meteorológico, as rotas preventivas são antecipadas para os pontos históricos e as equipes de sobreaviso ficam posicionadas antes da chuva chegar. Quem já limpou não precisa correr.</p>
       </div>
     </div>
     <div class="stack">
@@ -933,11 +956,12 @@ strong{font-weight:700}
         <p class="eyebrow">Plano de contingência para o período chuvoso</p>
         <p class="small">Em contratos de O&amp;M, montamos com o cliente um plano para o verão: mapa dos pontos históricos de alagamento, limpeza preventiva antecipada, equipes de sobreaviso e equipamentos posicionados nas regiões de maior risco.</p>
       </div>
-      <div class="cols cols-2" style="gap:4mm">
-        <div class="stat"><span class="v">24 h</span><span class="l">sobreaviso</span><span class="d muted">em contratos com cláusula emergencial</span></div>
-        <div class="stat"><span class="v">1</span><span class="l">chamado</span><span class="d muted">do atendimento à correção definitiva</span></div>
-      </div>
     </div>
+  </div>
+  <div class="cols cols-3" style="margin-top:8mm;gap:5mm">
+    <div class="box fill"><div class="stat"><span class="v">24 h</span><span class="l">sobreaviso</span><span class="d muted">em contratos com cláusula emergencial</span></div></div>
+    <div class="box fill"><div class="stat"><span class="v">1</span><span class="l">chamado</span><span class="d muted">do atendimento à correção definitiva</span></div></div>
+    <div class="box fill"><div class="stat"><span class="v">4</span><span class="l">tipos de ocorrência</span><span class="d muted">enchente, extravasamento, colapso, obstrução</span></div></div>
   </div>
   <footer class="foot"><span>Norte Sul · Metropolitana Ambiental</span><span class="n">17</span></footer>
 </section></div>
