@@ -8,7 +8,7 @@
 /* Layout: uma pilha de folhas A4 (210 x 297 mm) sobre uma mesa. Na tela as folhas escalam para caber; na impressão cada folha vira uma página. */
 :root{
   --azul:#005AAA;        /* azul institucional do símbolo */
-  --azul-escuro:#003F7A; /* azul de apoio para fundos e textos sobre azul claro */
+  --azul-escuro:#003F7A; /* azul de apoio */
   --azul-claro:#E6F0F9;  /* tinta de 10% para faixas e caixas */
   --preto:#201E1F;       /* preto do logotipo */
   --cinza:#5F6B78;       /* texto secundário, puxado para o azul */
@@ -32,8 +32,8 @@ body{margin:0;background:var(--mesa);color:var(--preto);font-family:var(--fonte)
 .slot{width:calc(210mm * var(--s));height:calc(297mm * var(--s));flex:none}
 .sheet{width:210mm;height:297mm;background:var(--papel);color:var(--preto);position:relative;overflow:hidden;transform:scale(var(--s));transform-origin:top left;box-shadow:0 2px 6px rgba(0,0,0,.12),0 12px 32px rgba(0,0,0,.10);padding:18mm 16mm 16mm;display:flex;flex-direction:column}
 .sheet.dark{background:var(--azul);color:#fff}
-.sheet.ink{background:var(--preto);color:#fff}
 img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
 
 /* tipografia */
 h1,h2,h3,h4,p{margin:0}
@@ -44,35 +44,48 @@ h4{font-size:9.5pt;font-weight:700;text-transform:uppercase;letter-spacing:.08em
 p{font-size:9.6pt;line-height:1.5}
 .lead{font-size:11.5pt;line-height:1.45}
 .eyebrow{font-size:8pt;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:var(--azul)}
-.dark .eyebrow,.ink .eyebrow{color:#fff;opacity:.8}
+.dark .eyebrow{color:#fff;opacity:.8}
 .muted{color:var(--cinza)}
-.dark .muted,.ink .muted{color:#fff;opacity:.75}
+.dark .muted{color:#fff;opacity:.75}
 .small{font-size:8pt;line-height:1.4}
 ul{margin:0;padding-left:1.1em;font-size:9.6pt;line-height:1.5}
 li{margin:0 0 .35em}
 ul.tight li{margin:0 0 .15em}
 strong{font-weight:700}
+.blue{color:var(--azul)}
+
+/* ícones */
+.ic{width:6.5mm;height:6.5mm;flex:none;stroke:currentColor;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;color:var(--azul)}
+.dark .ic{color:#fff}
+.ic.lg{width:9mm;height:9mm}
+.ic.sm{width:5mm;height:5mm}
 
 /* cabeçalho e rodapé de folha */
 .head{display:flex;justify-content:space-between;align-items:center;padding-bottom:5mm;border-bottom:1.5pt solid var(--azul);margin-bottom:8mm}
-.dark .head,.ink .head{border-color:rgba(255,255,255,.5)}
+.dark .head{border-color:rgba(255,255,255,.5)}
 .head .sym{height:9mm;width:auto}
 .head .sec{font-size:8pt;font-weight:700;text-transform:uppercase;letter-spacing:.14em}
 .foot{margin-top:auto;padding-top:4mm;border-top:.6pt solid var(--linha);display:flex;justify-content:space-between;align-items:center;font-size:7.5pt;color:var(--cinza);letter-spacing:.04em;text-transform:uppercase}
-.dark .foot,.ink .foot{border-color:rgba(255,255,255,.3);color:#fff;opacity:.8}
+.dark .foot{border-color:rgba(255,255,255,.3);color:#fff;opacity:.8}
 .foot .n{font-weight:700;font-variant-numeric:tabular-nums}
 
 /* blocos */
 .cols{display:grid;gap:8mm}
 .cols-2{grid-template-columns:1fr 1fr}
 .cols-3{grid-template-columns:1fr 1fr 1fr}
+.cols-4{grid-template-columns:repeat(4,1fr)}
 .stack{display:flex;flex-direction:column;gap:4mm}
 .box{border:.8pt solid var(--linha);padding:5mm 5.5mm;display:flex;flex-direction:column;gap:2mm}
 .box.fill{background:var(--azul-claro);border-color:transparent}
-.box.blue{background:var(--azul);color:#fff;border-color:transparent}
-.box.blue .eyebrow{color:#fff;opacity:.85}
+.box.bluebg{background:var(--azul);color:#fff;border-color:transparent}
+.box.bluebg .eyebrow,.box.bluebg .ic{color:#fff}
+.box.bluebg .eyebrow{opacity:.85}
+.dark .box{border-color:rgba(255,255,255,.5)}
+.dark .box.white{background:#fff;color:var(--preto);border-color:transparent}
+.dark .box.white .eyebrow{color:var(--azul);opacity:1}
+.dark .box.white .ic{color:var(--azul)}
 .rule{height:1.5pt;background:var(--azul);width:16mm}
-.dark .rule,.ink .rule{background:#fff}
+.dark .rule{background:#fff}
 
 .stat{display:flex;flex-direction:column;gap:1mm}
 .stat .v{font-size:30pt;font-weight:700;letter-spacing:-.03em;line-height:1;font-variant-numeric:tabular-nums}
@@ -82,11 +95,15 @@ strong{font-weight:700}
 .spec{display:grid;grid-template-columns:auto 1fr;gap:1.6mm 5mm;font-size:8.8pt;line-height:1.4}
 .spec dt{font-weight:700;color:var(--azul);white-space:nowrap}
 .spec dd{margin:0}
+.dark .spec dt{color:#fff}
 
 .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:4mm}
+.steps.s6{grid-template-columns:repeat(6,1fr)}
 .steps .st{border-top:1.5pt solid var(--azul);padding-top:2.5mm;display:flex;flex-direction:column;gap:1.5mm}
 .steps .st b{font-size:8pt;color:var(--azul);letter-spacing:.1em}
 .steps .st span{font-size:8.6pt;line-height:1.4}
+.dark .steps .st{border-color:#fff}
+.dark .steps .st b{color:#fff}
 
 .list{display:flex;flex-direction:column}
 .list .it{display:grid;grid-template-columns:34mm 1fr;gap:5mm;padding:3mm 0;border-top:.6pt solid var(--linha)}
@@ -94,15 +111,49 @@ strong{font-weight:700}
 .list .it h3{font-size:10.5pt;color:var(--azul)}
 .list .it p{font-size:9pt}
 
-.svc{display:grid;grid-template-columns:1fr 1fr;gap:5mm}
-.svc .c{border-top:1.5pt solid var(--azul);padding-top:3mm;display:flex;flex-direction:column;gap:1.5mm}
-.svc .c .k{font-size:8pt;color:var(--azul);font-weight:700;letter-spacing:.1em}
-.svc .c h3{font-size:11pt}
-.svc .c p{font-size:8.8pt;line-height:1.45}
+/* itens com ícone */
+.feats{display:grid;grid-template-columns:1fr 1fr;gap:5mm 7mm}
+.feats.one{grid-template-columns:1fr}
+.f{display:grid;grid-template-columns:8mm 1fr;gap:3mm;align-items:start}
+.f h3{font-size:10.5pt;margin-bottom:1mm}
+.f p{font-size:8.8pt;line-height:1.45}
+.f.big h3{font-size:12pt}
+.f.big p{font-size:9.4pt}
 
 .tags{display:flex;flex-wrap:wrap;gap:1.5mm}
 .tag{font-size:7.6pt;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:1.3mm 2.4mm;border:.8pt solid var(--azul);color:var(--azul)}
 .dark .tag{border-color:#fff;color:#fff}
+
+/* espaço reservado para fotos do cliente */
+.photo{border:.8pt dashed var(--azul);background:var(--azul-claro);display:flex;flex-direction:column;justify-content:flex-end;gap:1mm;padding:3mm 3.5mm;color:var(--azul);min-height:0}
+.photo .k{font-size:7pt;font-weight:700;text-transform:uppercase;letter-spacing:.12em;opacity:.8}
+.photo .t{font-size:8.5pt;font-weight:700;line-height:1.25}
+.photo.r43{aspect-ratio:4/3}
+.photo.r169{aspect-ratio:16/9}
+.photo.r1{aspect-ratio:1}
+.dark .photo{border-color:rgba(255,255,255,.7);background:rgba(255,255,255,.1);color:#fff}
+.photos{display:grid;grid-template-columns:1fr 1fr;gap:4mm}
+.photo.grow{aspect-ratio:auto;flex:1;min-height:24mm}
+
+/* sumário */
+.toc{display:flex;flex-direction:column;margin-top:8mm;border-top:.8pt solid rgba(255,255,255,.55)}
+.toc .row{display:grid;grid-template-columns:16mm 1fr 14mm;align-items:center;gap:6mm;padding:2.9mm 0;border-bottom:.8pt solid rgba(255,255,255,.35);color:#fff}
+.toc .num{font-size:19pt;font-weight:700;letter-spacing:-.03em;line-height:1;font-variant-numeric:tabular-nums;opacity:.55}
+.toc .txt{display:flex;flex-direction:column;gap:1mm;min-width:0}
+.toc .t{font-size:12.5pt;font-weight:700;line-height:1.1}
+.toc .d{font-size:8.6pt;line-height:1.4;opacity:.88}
+.toc .pg{font-size:12.5pt;font-weight:700;text-align:right;font-variant-numeric:tabular-nums}
+.toc-more{display:grid;grid-template-columns:repeat(4,1fr);gap:3.5mm 5mm;margin-top:6mm}
+.toc-more a{display:flex;justify-content:space-between;align-items:baseline;gap:3mm;border-top:1.5pt solid #fff;padding-top:2.5mm;color:#fff}
+.toc-more .t{font-size:9pt;font-weight:700;line-height:1.2}
+.toc-more .pg{font-size:9pt;font-weight:700;font-variant-numeric:tabular-nums}
+
+/* comparativo */
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:0;border:.8pt solid rgba(255,255,255,.5)}
+.vs > div{padding:4.5mm 5mm;display:flex;flex-direction:column;gap:2mm}
+.vs > div + div{border-left:.8pt solid rgba(255,255,255,.5)}
+.vs ul{font-size:8.8pt}
+.vs .hd{font-size:8pt;font-weight:700;text-transform:uppercase;letter-spacing:.12em;opacity:.85}
 
 /* marca d'água com o símbolo */
 .wm{position:absolute;right:0;bottom:0;width:120mm;opacity:.06;pointer-events:none}
@@ -120,7 +171,7 @@ strong{font-weight:700}
 
 /* contra-capa */
 .contact{display:grid;grid-template-columns:1fr 1fr;gap:8mm}
-.contact .k{font-size:8pt;text-transform:uppercase;letter-spacing:.12em;font-weight:700;opacity:.8;margin-bottom:1mm}
+.contact .k{font-size:8pt;text-transform:uppercase;letter-spacing:.12em;font-weight:700;opacity:.8;margin-bottom:1mm;display:flex;align-items:center;gap:2mm}
 .contact .v{font-size:10.5pt;line-height:1.45}
 .contact .v b{font-size:12pt}
 
@@ -135,8 +186,47 @@ strong{font-weight:700}
 </style>
 </head>
 <body>
+<!-- Biblioteca de ícones (traço, 24x24) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-drop" viewBox="0 0 24 24"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></symbol>
+  <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="1"/><path d="M3 10h18M3 15h18M9 4v16M15 4v16"/></symbol>
+  <symbol id="i-manhole" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><path d="M12 3v4M12 17v4M3 12h4M17 12h4"/></symbol>
+  <symbol id="i-pipe" viewBox="0 0 24 24"><path d="M3 8h9a4 4 0 0 1 4 4v9M3 12h9v9"/><path d="M3 6v8M14 21h4"/></symbol>
+  <symbol id="i-wave" viewBox="0 0 24 24"><path d="M3 8c3 0 3-2 6-2s3 2 6 2 3-2 6-2M3 13c3 0 3-2 6-2s3 2 6 2 3-2 6-2M3 18c3 0 3-2 6-2s3 2 6 2 3-2 6-2"/></symbol>
+  <symbol id="i-truck" viewBox="0 0 24 24"><path d="M2 7h11v9H2zM13 10h4l3 3v3h-7z"/><circle cx="6" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></symbol>
+  <symbol id="i-recycle" viewBox="0 0 24 24"><path d="M7 15l-2.5-4.5L8 5h3M14 5l3.5 5.5-1.5 3M12 19H7.5L5 15.5M17 19l2.5-4h-4"/><path d="M11 5l-2 2 2 2M15 19l2-2-2-2"/></symbol>
+  <symbol id="i-moto" viewBox="0 0 24 24"><circle cx="5" cy="16" r="3"/><circle cx="19" cy="16" r="3"/><path d="M5 16l4-6h5l2 3h3M9 10l-1-3h3M14 10l2-4h3"/></symbol>
+  <symbol id="i-camera" viewBox="0 0 24 24"><rect x="3" y="7" width="13" height="10" rx="1"/><path d="M16 10l5-2v8l-5-2z"/><circle cx="9" cy="12" r="2.5"/></symbol>
+  <symbol id="i-robot" viewBox="0 0 24 24"><rect x="5" y="8" width="14" height="9" rx="2"/><circle cx="9" cy="12.5" r="1.5"/><circle cx="15" cy="12.5" r="1.5"/><path d="M12 8V4M9 4h6M8 17v3M16 17v3"/></symbol>
+  <symbol id="i-scope" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="8" rx="1"/><path d="M12 11v10M8 21h8M9 6h6"/></symbol>
+  <symbol id="i-uv" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/></symbol>
+  <symbol id="i-layers" viewBox="0 0 24 24"><path d="M12 4l9 4.5-9 4.5-9-4.5z"/><path d="M3 13l9 4.5 9-4.5M3 17l9 4.5 9-4.5"/></symbol>
+  <symbol id="i-road" viewBox="0 0 24 24"><path d="M4 21L9 3h6l5 18"/><path d="M12 6v3M12 12v3M12 18v3"/></symbol>
+  <symbol id="i-wrench" viewBox="0 0 24 24"><path d="M14 4a5 5 0 0 0-5.5 6.7L3 16.2 6.8 20l5.5-5.5A5 5 0 0 0 19 9l-3 3-3-3z"/></symbol>
+  <symbol id="i-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/></symbol>
+  <symbol id="i-map" viewBox="0 0 24 24"><path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2z"/><path d="M9 4v14M15 6v14"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4M9 12h7M9 16h7"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V4M4 20h16"/><path d="M8 16v-5M12 16V8M16 16v-3"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3l10 18H2z"/><path d="M12 10v5M12 18h.01"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></symbol>
+  <symbol id="i-helmet" viewBox="0 0 24 24"><path d="M4 15a8 8 0 0 1 16 0"/><path d="M2 15h20v2H2zM12 7v-3"/></symbol>
+  <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M20 4c-9 0-15 5-15 12 0 2 1 4 1 4s8 1 12-4 2-12 2-12z"/><path d="M6 20c3-5 7-8 11-11"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20a6 6 0 0 1 12 0M14 20a5 5 0 0 1 7-4.5"/></symbol>
+  <symbol id="i-flag" viewBox="0 0 24 24"><path d="M5 21V4h12l-2 4 2 4H5"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="M3 7l9 6 9-6"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-6.5 7-12a7 7 0 0 0-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></symbol>
+  <symbol id="i-water" viewBox="0 0 24 24"><path d="M4 14c2 0 2-1.5 4-1.5s2 1.5 4 1.5 2-1.5 4-1.5 2 1.5 4 1.5"/><path d="M12 3s5 5.5 5 9.5M12 3S7 8.5 7 12.5"/></symbol>
+  <symbol id="i-cut" viewBox="0 0 24 24"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M8.5 7.5L20 19M8.5 16.5L20 5"/></symbol>
+  <symbol id="i-filter" viewBox="0 0 24 24"><path d="M3 5h18l-7 8v6l-4 2v-8z"/></symbol>
+  <symbol id="i-school" viewBox="0 0 24 24"><path d="M3 9l9-4 9 4-9 4z"/><path d="M7 11v5c0 1.5 2.5 3 5 3s5-1.5 5-3v-5M21 9v5"/></symbol>
+</svg>
+
 <div class="desk">
-<p class="note"><b>Como usar:</b> este arquivo já está no formato A4. Para imprimir ou gerar PDF, abra o HTML no navegador e use Ctrl+P (ou Cmd+P) com margens em "nenhuma" e "imprimir fundos" ligado. Aqui na tela você pode selecionar qualquer trecho e deixar comentário.</p>
+<p class="note"><b>Como usar:</b> este arquivo já está no formato A4. Para imprimir ou gerar PDF, abra o HTML no navegador e use Ctrl+P (ou Cmd+P) com margens em "nenhuma" e "imprimir fundos" ligado. As caixas tracejadas marcam onde entram as fotos do cliente. Aqui na tela você pode selecionar qualquer trecho e deixar comentário.</p>
 
 <!-- ============ 01 CAPA ============ -->
 <div class="slot"><section class="sheet cover">
@@ -159,14 +249,43 @@ strong{font-weight:700}
     </div>
     <div class="cols cols-3" style="gap:6mm">
       <div><p class="eyebrow">Sede</p><p class="small">Hortolândia, SP<br>Região Metropolitana de Campinas</p></div>
-      <div><p class="eyebrow">Escritório</p><p class="small">São Paulo, SP<br>Atendimento à capital e RMSP</p></div>
+      <div><p class="eyebrow">Unidades</p><p class="small">São Paulo, SP<br>Atendimento à capital e RMSP</p></div>
       <div><p class="eyebrow">Contato</p><p class="small">comercial@nortesultec.com.br<br>nortesultec.com.br</p></div>
     </div>
   </div>
 </section></div>
 
-<!-- ============ 02 QUEM SOMOS ============ -->
-<div class="slot"><section class="sheet">
+<!-- ============ 02 SUMÁRIO ============ -->
+<div class="slot" id="p02"><section class="sheet dark">
+  <header class="head"><img class="sym" src="assets/simbolo-white.png" alt=""><span class="sec">Sumário</span></header>
+  <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:10mm">
+    <h2 style="max-width:120mm">Oito frentes, um mesmo objetivo: rede funcionando, cidade seguindo.</h2>
+    <p class="small" style="max-width:48mm;opacity:.85;padding-bottom:1mm">Cada frente pode ser contratada isolada ou dentro de um programa de manutenção contínua.</p>
+  </div>
+  <div class="toc">
+    <a class="row" href="#p06"><span class="num">01</span><span class="txt"><span class="t">Drenagem urbana</span><span class="d">Limpeza mecanizada de galerias, bocas de lobo, poços de visita, ramais, córregos e canais. Hidrojato, sucção e caminhão reciclador.</span></span><span class="pg">06</span></a>
+    <a class="row" href="#p08"><span class="num">02</span><span class="txt"><span class="t">Esgotos</span><span class="d">Desobstrução e limpeza de redes coletoras, ramais e poços de visita, do caminhão hidrojato ao kit sobre motocicleta.</span></span><span class="pg">08</span></a>
+    <a class="row" href="#p10"><span class="num">03</span><span class="txt"><span class="t">Inspeção de tubulações</span><span class="d">Videoinspeção robotizada e câmera periscópica. Laudo com diagnóstico estrutural e hidráulico da rede.</span></span><span class="pg">10</span></a>
+    <a class="row" href="#p12"><span class="num">04</span><span class="txt"><span class="t">Obras por MND e CIPP-UV</span><span class="d">Tubo novo dentro do tubo velho, curado por luz ultravioleta. Sem vala, sem asfalto quebrado, rua liberada no mesmo dia.</span></span><span class="pg">12</span></a>
+    <a class="row" href="#p14"><span class="num">05</span><span class="txt"><span class="t">Obras de saneamento</span><span class="d">Execução e recuperação de redes de água, esgoto e drenagem, poços de visita, caixas e dispositivos.</span></span><span class="pg">14</span></a>
+    <a class="row" href="#p15"><span class="num">06</span><span class="txt"><span class="t">Gestão ambiental e O&amp;M</span><span class="d">Operação e manutenção contínua de sistemas de esgoto e drenagem: rotas, ocorrências, indicadores e relatórios.</span></span><span class="pg">15</span></a>
+    <a class="row" href="#p16"><span class="num">07</span><span class="txt"><span class="t">Serviços técnicos</span><span class="d">Cadastro de redes, diagnóstico, prognóstico de pontos críticos e apoio técnico a planos de saneamento.</span></span><span class="pg">16</span></a>
+    <a class="row" href="#p17"><span class="num">08</span><span class="txt"><span class="t">Situações emergenciais</span><span class="d">Enchente, extravasamento, colapso de galeria. Mobilização rápida com equipamento de alto desempenho.</span></span><span class="pg">17</span></a>
+  </div>
+  <div class="toc-more">
+    <a href="#p03"><span class="t">Quem somos</span><span class="pg">03</span></a>
+    <a href="#p04"><span class="t">Missão e jeito de trabalhar</span><span class="pg">04</span></a>
+    <a href="#p05"><span class="t">Frentes de atuação</span><span class="pg">05</span></a>
+    <a href="#p18"><span class="t">Equipamentos e frota</span><span class="pg">18</span></a>
+    <a href="#p19"><span class="t">Sustentabilidade e segurança</span><span class="pg">19</span></a>
+    <a href="#p20"><span class="t">Experiência e habilitação</span><span class="pg">20</span></a>
+    <a href="#p21"><span class="t">Contato</span><span class="pg">21</span></a>
+  </div>
+  <footer class="foot"><span>Norte Sul · Metropolitana Ambiental</span><span class="n">02</span></footer>
+</section></div>
+
+<!-- ============ 03 QUEM SOMOS ============ -->
+<div class="slot" id="p03"><section class="sheet">
   <header class="head"><img class="sym" src="assets/simbolo.png" alt=""><span class="sec">Quem somos</span></header>
   <p class="eyebrow" style="margin-bottom:3mm">Norte Sul + Metropolitana Ambiental</p>
   <h2 style="max-width:150mm">Trinta e cinco anos olhando para o lado da cidade que ninguém vê.</h2>
@@ -174,352 +293,672 @@ strong{font-weight:700}
     <div class="stack">
       <p class="lead">A Norte Sul Hidrotecnologia e Comércio foi fundada em 22 de junho de 1990 e, desde o primeiro dia, dedicou-se ao saneamento. O foco sempre foi a manutenção dos sistemas que sustentam a rotina urbana: drenagem de águas pluviais, esgotamento sanitário e distribuição de água.</p>
       <p>Ao longo do tempo, a atuação cresceu do serviço de limpeza para o ciclo completo de cuidado com a rede: zeladoria urbana, cadastro, inspeção de tubulações, diagnóstico e prognóstico de pontos críticos e gestão técnico-operacional dos sistemas.</p>
-      <p>A Metropolitana Ambiental é a empresa aliada. As duas operam de forma integrada, somando equipes, frota e tecnologia nas frentes de manutenção urbana, drenagem, esgotos e execução de obras por método não destrutivo (MND). Para o cliente, isso significa um único interlocutor, do diagnóstico à entrega da rede recuperada.</p>
+      <p>A Metropolitana Ambiental é a empresa aliada. Ela concentra a aplicação de tecnologias não destrutivas, executando obras com o mínimo de impacto na vida da cidade e ajudando a reduzir perdas de água. As duas operam de forma integrada, somando equipes, frota e tecnologia. Para o cliente, isso significa um único interlocutor, do diagnóstico à entrega da rede recuperada.</p>
       <p>Trabalhamos principalmente com prefeituras, subprefeituras, autarquias e concessionárias de saneamento, por contrato direto ou licitação, com estrutura própria para atender medições, relatórios e exigências de fiscalização.</p>
+      <div class="photo grow"><span class="k">Foto</span><span class="t">Equipe e frota na sede de Hortolândia</span></div>
     </div>
     <div class="stack">
       <div class="box fill">
-        <p class="eyebrow">Missão</p>
-        <p>Prestar soluções que atendam ou superem as necessidades e expectativas dos clientes e o bem-estar da população, por meio da melhoria contínua na operação da infraestrutura, aplicando as tecnologias mais adequadas de forma socioeconômica e ambientalmente sustentável.</p>
-      </div>
-      <div class="box">
-        <p class="eyebrow">Como trabalhamos</p>
-        <ul class="tight">
-          <li><strong>Diagnóstico antes da intervenção.</strong> Inspeção e cadastro mostram o problema real antes de qualquer obra.</li>
-          <li><strong>O mínimo de transtorno.</strong> Preferência por métodos não destrutivos e equipamentos que reaproveitam água.</li>
-          <li><strong>Registro de tudo.</strong> Vídeos, laudos e relatórios de medição acompanham cada serviço.</li>
-          <li><strong>Responsabilidade ambiental.</strong> Destinação correta dos resíduos retirados das redes.</li>
-        </ul>
+        <p class="eyebrow">Linha do tempo</p>
+        <dl class="spec">
+          <dt>1990</dt><dd>Fundação da Norte Sul em Hortolândia, SP, voltada à manutenção de sistemas de drenagem, esgoto e água.</dd>
+          <dt>Anos 2000</dt><dd>Contratos de manutenção do sistema de microdrenagem com a Prefeitura de São Paulo: limpeza, cadastro e inspeção por CFTV de áreas com alagamento recorrente.</dd>
+          <dt>Anos 2010</dt><dd>Serviços de limpeza de galerias, córregos e canais para subprefeituras da capital. Ampliação da frota de hidrojato e sucção.</dd>
+          <dt>Hoje</dt><dd>Operação integrada com a Metropolitana Ambiental, caminhão reciclador, videoinspeção robotizada e reabilitação de redes por CIPP-UV. Associada à ABRATT.</dd>
+        </dl>
       </div>
       <div class="cols cols-3" style="gap:4mm">
         <div class="stat"><span class="v">35+</span><span class="l">anos</span><span class="d muted">de atuação em saneamento</span></div>
         <div class="stat"><span class="v">2</span><span class="l">empresas</span><span class="d muted">operando integradas</span></div>
-        <div class="stat"><span class="v">6</span><span class="l">frentes</span><span class="d muted">de serviço neste portfólio</span></div>
+        <div class="stat"><span class="v">3</span><span class="l">unidades</span><span class="d muted">Hortolândia e São Paulo</span></div>
+      </div>
+      <div class="box">
+        <p class="eyebrow">ABRATT</p>
+        <p class="small">A Norte Sul é associada à Associação Brasileira de Tecnologia Não Destrutiva, entidade que reúne as empresas que aplicam métodos não destrutivos em redes de infraestrutura no país.</p>
       </div>
     </div>
   </div>
   <img class="wm" src="assets/simbolo.png" alt="">
-  <footer class="foot"><span>Norte Sul · Metropolitana Ambiental</span><span class="n">02</span></footer>
-</section></div>
-
-<!-- ============ 03 FRENTES DE ATUAÇÃO ============ -->
-<div class="slot"><section class="sheet dark">
-  <header class="head"><img class="sym" src="assets/simbolo-white.png" alt=""><span class="sec">Frentes de atuação</span></header>
-  <h2 style="max-width:150mm">Seis frentes, um mesmo objetivo: rede funcionando, cidade seguindo.</h2>
-  <p class="lead" style="margin-top:4mm;max-width:140mm;opacity:.9">Cada frente pode ser contratada isolada ou como parte de um programa de manutenção contínua. As páginas seguintes detalham o que entra em cada uma.</p>
-  <div class="svc" style="margin-top:10mm;gap:7mm 10mm">
-    <div class="c" style="border-color:#fff"><span class="k" style="color:#fff">Página 04</span><h3>Drenagem urbana</h3><p>Limpeza mecanizada de galerias, bocas de lobo, poços de visita e ramais. Hidrojateamento, sucção e desassoreamento com caminhão reciclador.</p></div>
-    <div class="c" style="border-color:#fff"><span class="k" style="color:#fff">Página 05</span><h3>Esgotos</h3><p>Desobstrução e limpeza de redes coletoras, ramais e poços de visita, com equipamentos do caminhão hidrojato ao kit compacto sobre motocicleta.</p></div>
-    <div class="c" style="border-color:#fff"><span class="k" style="color:#fff">Página 06</span><h3>Inspeção de tubulações</h3><p>Videoinspeção robotizada por circuito fechado de TV e câmera periscópica. Laudo com diagnóstico estrutural e hidráulico da rede.</p></div>
-    <div class="c" style="border-color:#fff"><span class="k" style="color:#fff">Página 07</span><h3>Obras por MND e CIPP-UV</h3><p>Reabilitação de tubulações por dentro, com liner curado por luz ultravioleta. Sem vala, sem quebrar asfalto, rede liberada no mesmo dia.</p></div>
-    <div class="c" style="border-color:#fff"><span class="k" style="color:#fff">Página 08</span><h3>Gestão ambiental e O&amp;M</h3><p>Gestão técnico-operacional de sistemas de esgoto e drenagem: cadastro, diagnóstico, planejamento e operação contínua.</p></div>
-    <div class="c" style="border-color:#fff"><span class="k" style="color:#fff">Página 08</span><h3>Serviços técnicos e emergências</h3><p>Cadastro de redes, prognóstico de pontos críticos, apoio a planos de segurança e atendimento a situações emergenciais.</p></div>
-  </div>
-  <div style="margin-top:12mm">
-    <h4 style="margin-bottom:4mm;opacity:.85">Do diagnóstico à entrega, com a mesma equipe</h4>
-    <div class="steps">
-      <div class="st" style="border-color:#fff"><b style="color:#fff">INSPECIONAR</b><span>Vídeo e cadastro mostram o estado real da rede.</span></div>
-      <div class="st" style="border-color:#fff"><b style="color:#fff">LIMPAR</b><span>Hidrojato, sucção e reciclador devolvem a vazão.</span></div>
-      <div class="st" style="border-color:#fff"><b style="color:#fff">REABILITAR</b><span>CIPP-UV recupera o tubo por dentro, sem vala.</span></div>
-      <div class="st" style="border-color:#fff"><b style="color:#fff">OPERAR</b><span>Gestão contínua evita que o problema volte.</span></div>
-    </div>
-  </div>
-  <div class="tags" style="margin-top:10mm">
-    <span class="tag">Prefeituras</span><span class="tag">Subprefeituras</span><span class="tag">Autarquias</span><span class="tag">Concessionárias</span><span class="tag">Licitações</span><span class="tag">Contratos de O&amp;M</span>
-  </div>
   <footer class="foot"><span>Norte Sul · Metropolitana Ambiental</span><span class="n">03</span></footer>
 </section></div>
 
-<!-- ============ 04 DRENAGEM ============ -->
-<div class="slot"><section class="sheet">
-  <header class="head"><img class="sym" src="assets/simbolo.png" alt=""><span class="sec">Drenagem urbana</span></header>
-  <p class="eyebrow" style="margin-bottom:3mm">Frente 01</p>
-  <h2 style="max-width:150mm">Galeria limpa é enchente que não acontece.</h2>
-  <p class="lead" style="margin-top:4mm;max-width:150mm">A limpeza mecanizada do sistema de drenagem retira areia, entulho e resíduos que se acumulam em galerias, bocas de lobo, poços de visita e ramais. Feita de forma preventiva, antes do período de chuvas, devolve à rede a capacidade de escoamento para a qual foi projetada.</p>
+<!-- ============ 04 MISSÃO E JEITO DE TRABALHAR ============ -->
+<div class="slot" id="p04"><section class="sheet">
+  <header class="head"><img class="sym" src="assets/simbolo.png" alt=""><span class="sec">Missão e jeito de trabalhar</span></header>
+  <h2 style="max-width:155mm">A rede é do cliente. O bem&#8209;estar é da população. A responsabilidade é nossa.</h2>
   <div class="cols cols-2" style="margin-top:8mm">
     <div class="stack">
-      <h4 style="color:var(--azul)">O que fazemos</h4>
-      <ul>
-        <li><strong>Limpeza mecanizada de galerias</strong> de águas pluviais, em qualquer diâmetro, com hidrojateamento de alta pressão e sucção a vácuo dos sedimentos.</li>
-        <li><strong>Limpeza de bocas de lobo, bocas de leão e caixas de ligação</strong>, incluindo remoção de resíduos sólidos e desobstrução do ramal até a galeria.</li>
-        <li><strong>Limpeza e manutenção de poços de visita</strong>, com recomposição de tampões e degraus quando necessário.</li>
-        <li><strong>Desassoreamento de galerias e canais</strong>, com retirada e transporte do material.</li>
-        <li><strong>Zeladoria urbana</strong> em programas contínuos, com rotas e frequências definidas por bairro ou bacia.</li>
-        <li><strong>Destinação dos resíduos</strong> em local licenciado, com controle de transporte.</li>
-      </ul>
-      <div class="box fill">
-        <p class="eyebrow">Quando contratar</p>
-        <p class="small">Antes do período chuvoso, após alagamentos recorrentes em um mesmo ponto, em programas anuais de manutenção preventiva ou quando a videoinspeção apontar redução de seção por assoreamento.</p>
+      <div class="box bluebg">
+        <p class="eyebrow">Missão</p>
+        <p class="lead">Prestar soluções que atendam ou superem as necessidades e expectativas dos clientes e o bem-estar da população, por meio da melhoria contínua na operação da infraestrutura, aplicando as tecnologias mais adequadas de forma socioeconômica e ambientalmente sustentável.</p>
+      </div>
+      <div class="box">
+        <p class="eyebrow">Para quem trabalhamos</p>
+        <div class="feats one" style="gap:3mm">
+          <div class="f"><svg class="ic"><use href="#i-flag"/></svg><div><h3>Prefeituras e subprefeituras</h3><p>Manutenção de microdrenagem, zeladoria de bocas de lobo, galerias, córregos e canais.</p></div></div>
+          <div class="f"><svg class="ic"><use href="#i-drop"/></svg><div><h3>Autarquias e companhias de saneamento</h3><p>Redes de esgoto e água: inspeção, desobstrução, reabilitação por MND e apoio técnico.</p></div></div>
+          <div class="f"><svg class="ic"><use href="#i-gear"/></svg><div><h3>Concessionárias e indústrias</h3><p>Operação e manutenção de sistemas próprios, com relatórios e indicadores.</p></div></div>
+        </div>
       </div>
     </div>
     <div class="stack">
-      <div class="box blue">
-        <p class="eyebrow">Destaque</p>
-        <h3>Caminhão reciclador</h3>
-        <p>Equipamento de hidrossucção que limpa galerias, ramais e bocas de lobo reaproveitando a água do próprio sistema. Um processo de separação e filtragem retira os sólidos durante a operação e devolve a água limpa ao jato. Resultado: menos paradas para reabastecer, menos consumo de água potável e mais metros limpos por dia.</p>
-      </div>
-      <div class="box">
-        <p class="eyebrow">Como funciona a operação</p>
-        <dl class="spec">
-          <dt>1. Levantamento</dt><dd>Mapeamento dos trechos, pontos críticos e acessos.</dd>
-          <dt>2. Sinalização</dt><dd>Isolamento da área conforme normas de trânsito.</dd>
-          <dt>3. Hidrojato</dt><dd>Bico de alta pressão solta o material aderido às paredes.</dd>
-          <dt>4. Sucção</dt><dd>Sedimentos são aspirados para o tanque do caminhão.</dd>
-          <dt>5. Registro</dt><dd>Relatório fotográfico e medição por trecho.</dd>
-          <dt>6. Destinação</dt><dd>Resíduo pesado e encaminhado a aterro licenciado.</dd>
-        </dl>
+      <h4 class="blue">Como trabalhamos</h4>
+      <div class="feats one" style="gap:4mm">
+        <div class="f"><svg class="ic"><use href="#i-camera"/></svg><div><h3>Diagnóstico antes da intervenção</h3><p>Inspeção e cadastro mostram o problema real antes de qualquer obra. Ninguém abre rua por palpite.</p></div></div>
+        <div class="f"><svg class="ic"><use href="#i-road"/></svg><div><h3>O mínimo de transtorno</h3><p>Preferência por métodos não destrutivos e por equipamentos que trabalham de dentro do poço de visita, sem vala e sem desvio de trânsito.</p></div></div>
+        <div class="f"><svg class="ic"><use href="#i-recycle"/></svg><div><h3>Água reaproveitada</h3><p>O caminhão reciclador reutiliza a água do próprio sistema durante a limpeza, poupando água potável.</p></div></div>
+        <div class="f"><svg class="ic"><use href="#i-doc"/></svg><div><h3>Registro de tudo</h3><p>Vídeos, laudos, relatórios fotográficos e planilhas de medição acompanham cada serviço e sustentam a fiscalização.</p></div></div>
+        <div class="f"><svg class="ic"><use href="#i-leaf"/></svg><div><h3>Responsabilidade ambiental</h3><p>Desidratação, transporte e destinação dos resíduos retirados das redes em aterro licenciado.</p></div></div>
+        <div class="f"><svg class="ic"><use href="#i-helmet"/></svg><div><h3>Segurança como rotina</h3><p>Equipes treinadas em espaço confinado e sinalização viária, com EPI e procedimentos por tipo de serviço.</p></div></div>
       </div>
     </div>
+  </div>
+  <h4 class="blue" style="margin-top:8mm;margin-bottom:4mm">O que a gente defende</h4>
+  <div class="cols cols-3" style="gap:5mm">
+    <div class="box fill"><div style="display:flex;align-items:center;gap:2.5mm"><svg class="ic sm"><use href="#i-check"/></svg><h3 style="font-size:10.5pt">Fazer certo de primeira</h3></div><p class="small">Diagnóstico antes, execução bem feita, registro depois. Retrabalho custa caro para o cliente e para a cidade.</p></div>
+    <div class="box fill"><div style="display:flex;align-items:center;gap:2.5mm"><svg class="ic sm"><use href="#i-users"/></svg><h3 style="font-size:10.5pt">Respeito a quem está na rua</h3></div><p class="small">Morador, comerciante, motorista. A obra que ninguém percebe é a obra bem feita.</p></div>
+    <div class="box fill"><div style="display:flex;align-items:center;gap:2.5mm"><svg class="ic sm"><use href="#i-leaf"/></svg><h3 style="font-size:10.5pt">Tecnologia com propósito</h3></div><p class="small">Equipamento novo entra na frota quando reduz água, transtorno ou risco. Não por moda.</p></div>
   </div>
   <img class="wm" src="assets/simbolo.png" alt="">
   <footer class="foot"><span>Norte Sul · Metropolitana Ambiental</span><span class="n">04</span></footer>
 </section></div>
 
-<!-- ============ 05 ESGOTOS ============ -->
-<div class="slot"><section class="sheet">
-  <header class="head"><img class="sym" src="assets/simbolo.png" alt=""><span class="sec">Esgotos</span></header>
-  <p class="eyebrow" style="margin-bottom:3mm">Frente 02</p>
-  <h2 style="max-width:150mm">Rede de esgoto desobstruída, do ramal da casa ao coletor da avenida.</h2>
-  <p class="lead" style="margin-top:4mm;max-width:150mm">Atuamos na manutenção de sistemas de esgotamento sanitário: desobstrução, limpeza e conservação de redes coletoras, ramais prediais e poços de visita. Trabalhamos com uma escala de equipamentos que vai do caminhão hidrojato ao kit compacto sobre motocicleta, para chegar onde o caminhão não passa.</p>
-  <div class="cols cols-2" style="margin-top:8mm">
+<!-- ============ 05 FRENTES DE ATUAÇÃO ============ -->
+<div class="slot" id="p05"><section class="sheet dark">
+  <header class="head"><img class="sym" src="assets/simbolo-white.png" alt=""><span class="sec">Frentes de atuação</span></header>
+  <h2 style="max-width:150mm">Do diagnóstico à entrega, com a mesma equipe.</h2>
+  <p class="lead" style="margin-top:4mm;max-width:140mm;opacity:.9">Inspecionar, limpar, reabilitar, operar. As oito frentes cobrem o ciclo completo de vida de uma rede, e cada uma pode ser contratada isolada.</p>
+  <div class="feats" style="margin-top:10mm;gap:7mm 10mm">
+    <div class="f big"><svg class="ic lg"><use href="#i-grid"/></svg><div><h3>Drenagem urbana</h3><p>Limpeza mecanizada de galerias, bocas de lobo, poços de visita, ramais, córregos e canais.</p></div></div>
+    <div class="f big"><svg class="ic lg"><use href="#i-pipe"/></svg><div><h3>Esgotos</h3><p>Desobstrução e limpeza de redes coletoras, ramais prediais, poços de visita e elevatórias.</p></div></div>
+    <div class="f big"><svg class="ic lg"><use href="#i-robot"/></svg><div><h3>Inspeção de tubulações</h3><p>Videoinspeção robotizada e câmera periscópica, com laudo de diagnóstico.</p></div></div>
+    <div class="f big"><svg class="ic lg"><use href="#i-uv"/></svg><div><h3>Obras por MND e CIPP-UV</h3><p>Reabilitação de tubulações por dentro, sem abertura de vala.</p></div></div>
+    <div class="f big"><svg class="ic lg"><use href="#i-wrench"/></svg><div><h3>Obras de saneamento</h3><p>Execução e recuperação de redes, poços de visita, caixas e dispositivos.</p></div></div>
+    <div class="f big"><svg class="ic lg"><use href="#i-chart"/></svg><div><h3>Gestão ambiental e O&amp;M</h3><p>Operação e manutenção contínua com rotas, indicadores e relatórios.</p></div></div>
+    <div class="f big"><svg class="ic lg"><use href="#i-map"/></svg><div><h3>Serviços técnicos</h3><p>Cadastro, diagnóstico, prognóstico de pontos críticos e apoio a planos.</p></div></div>
+    <div class="f big"><svg class="ic lg"><use href="#i-alert"/></svg><div><h3>Situações emergenciais</h3><p>Enchentes, extravasamentos e colapsos, com mobilização rápida.</p></div></div>
+  </div>
+  <div style="margin-top:12mm">
+    <div class="steps">
+      <div class="st"><b>INSPECIONAR</b><span>Vídeo e cadastro mostram o estado real da rede.</span></div>
+      <div class="st"><b>LIMPAR</b><span>Hidrojato, sucção e reciclador devolvem a vazão.</span></div>
+      <div class="st"><b>REABILITAR</b><span>CIPP-UV recupera o tubo por dentro, sem vala.</span></div>
+      <div class="st"><b>OPERAR</b><span>Gestão contínua evita que o problema volte.</span></div>
+    </div>
+  </div>
+  <div class="tags" style="margin-top:9mm">
+    <span class="tag">Prefeituras</span><span class="tag">Subprefeituras</span><span class="tag">Autarquias</span><span class="tag">Concessionárias</span><span class="tag">Licitações</span><span class="tag">Contratos de O&amp;M</span>
+  </div>
+  <footer class="foot"><span>Norte Sul · Metropolitana Ambiental</span><span class="n">05</span></footer>
+</section></div>
+
+<!-- ============ 06 DRENAGEM 1 ============ -->
+<div class="slot" id="p06"><section class="sheet">
+  <header class="head"><img class="sym" src="assets/simbolo.png" alt=""><span class="sec">Drenagem urbana · 1 de 2</span></header>
+  <p class="eyebrow" style="margin-bottom:3mm">Frente 01</p>
+  <h2 style="max-width:150mm">Galeria limpa é enchente que não acontece.</h2>
+  <p class="lead" style="margin-top:4mm;max-width:155mm">A limpeza mecanizada do sistema de drenagem retira areia, entulho e resíduos que se acumulam em galerias, bocas de lobo, poços de visita e ramais. Feita de forma preventiva, antes do período de chuvas, devolve à rede a capacidade de escoamento para a qual foi projetada. Feita de forma corretiva, resolve o ponto de alagamento que se repete a cada temporal.</p>
+  <h4 class="blue" style="margin-top:8mm;margin-bottom:4mm">O que entra no serviço</h4>
+  <div class="feats" style="gap:5mm 8mm">
+    <div class="f"><svg class="ic"><use href="#i-grid"/></svg><div><h3>Limpeza mecanizada de galerias</h3><p>Galerias de águas pluviais em qualquer diâmetro. Hidrojateamento de alta pressão solta o material aderido e a sucção a vácuo retira os sedimentos pelo poço de visita, sem abrir a via.</p></div></div>
+    <div class="f"><svg class="ic"><use href="#i-manhole"/></svg><div><h3>Bocas de lobo, bocas de leão e caixas</h3><p>Remoção de resíduos sólidos, areia e folhas. Desobstrução do ramal até a galeria. Recomposição de grelhas e tampões quando necessário.</p></div></div>
+    <div class="f"><svg class="ic"><use href="#i-pipe"/></svg><div><h3>Ramais e poços de visita</h3><p>Limpeza de ramais de ligação e de poços de visita, com verificação de degraus, tampões e condições de acesso.</p></div></div>
+    <div class="f"><svg class="ic"><use href="#i-wave"/></svg><div><h3>Córregos e canais</h3><p>Limpeza e desassoreamento de córregos, canais e travessias, com retirada e transporte do material. Serviço executado para subprefeituras da capital paulista.</p></div></div>
+    <div class="f"><svg class="ic"><use href="#i-filter"/></svg><div><h3>Desidratação e transporte de resíduos</h3><p>O material retirado é desidratado, pesado, transportado e destinado a aterro sanitário licenciado, com controle documental.</p></div></div>
+    <div class="f"><svg class="ic"><use href="#i-clock"/></svg><div><h3>Zeladoria contínua</h3><p>Programas de manutenção com rotas e frequências definidas por bairro ou bacia hidrográfica, priorizando os pontos críticos de alagamento.</p></div></div>
+    <div class="f"><svg class="ic"><use href="#i-map"/></svg><div><h3>Cadastro do sistema de drenagem</h3><p>Levantamento de traçado, diâmetro e estado de cada trecho durante a limpeza, alimentando o cadastro técnico do município.</p></div></div>
+    <div class="f"><svg class="ic"><use href="#i-alert"/></svg><div><h3>Diagnóstico de pontos críticos</h3><p>Identificação da causa dos alagamentos recorrentes: assoreamento, colapso, ligação irregular ou subdimensionamento.</p></div></div>
+  </div>
+  <div class="box fill" style="margin-top:7mm">
+    <p class="eyebrow">Quando contratar</p>
+    <p>Antes do período chuvoso, após alagamentos recorrentes em um mesmo ponto, em programas anuais de manutenção preventiva ou quando a videoinspeção apontar redução de seção por assoreamento.</p>
+  </div>
+  <img class="wm" src="assets/simbolo.png" alt="">
+  <footer class="foot"><span>Norte Sul · Metropolitana Ambiental</span><span class="n">06</span></footer>
+</section></div>
+
+<!-- ============ 07 DRENAGEM 2 ============ -->
+<div class="slot" id="p07"><section class="sheet">
+  <header class="head"><img class="sym" src="assets/simbolo.png" alt=""><span class="sec">Drenagem urbana · 2 de 2</span></header>
+  <div class="cols cols-2">
     <div class="stack">
-      <h4 style="color:var(--azul)">O que fazemos</h4>
-      <ul>
-        <li><strong>Desobstrução de redes coletoras</strong> com hidrojateamento, removendo gordura, raízes e sedimentos.</li>
-        <li><strong>Desobstrução de ramais prediais</strong> em vias estreitas, ladeiras e vielas, com equipamento compacto sobre motocicleta.</li>
-        <li><strong>Limpeza de poços de visita e estações elevatórias</strong> com sucção a vácuo.</li>
-        <li><strong>Inspeção com câmera periscópica</strong> para ver dentro do tubo antes e depois do serviço.</li>
-        <li><strong>Atendimento a ocorrências</strong>: extravasamento, refluxo e obstruções em rede pública.</li>
-        <li><strong>Manutenção contínua</strong> em contratos de operação e manutenção (O&amp;M).</li>
-      </ul>
+      <div class="box bluebg">
+        <div style="display:flex;align-items:center;gap:3mm"><svg class="ic"><use href="#i-recycle"/></svg><p class="eyebrow">Destaque</p></div>
+        <h3>Caminhão reciclador</h3>
+        <p>Equipamento de hidrossucção que limpa galerias, ramais e bocas de lobo reaproveitando a água do próprio sistema. Um processo inteligente de separação e filtragem retira os sólidos durante a operação e devolve a água limpa ao jato. O mesmo volume de água circula ao longo de todo o turno.</p>
+        <ul class="tight" style="color:#fff">
+          <li>Menos paradas para reabastecer, mais metros limpos por dia.</li>
+          <li>Menos consumo de água potável.</li>
+          <li>Resíduo já separado e pronto para destinação.</li>
+        </ul>
+      </div>
+      <div class="photo r43"><span class="k">Foto</span><span class="t">Caminhão reciclador em operação</span></div>
+      <div class="photo r169"><span class="k">Foto</span><span class="t">Limpeza de boca de lobo com hidrojato</span></div>
     </div>
     <div class="stack">
-      <div class="box blue">
-        <p class="eyebrow">Destaque</p>
-        <h3>Desobstrução sobre motocicleta</h3>
-        <p>Equipamento compacto de desobstrução de ramais de esgoto montado sobre uma motocicleta. Chega rápido, entra em rua sem saída, não bloqueia a via e resolve a maior parte das ocorrências de ramal sem mobilizar caminhão. Ideal para zeladoria de bairros densos.</p>
-      </div>
       <div class="box">
-        <p class="eyebrow">Câmera periscópica</p>
-        <p>Usada para inspeção visual de tubulações enterradas a partir do poço de visita. Permite ver o interior do tubo e identificar obstruções, vazamentos, fissuras, deslocamentos e danos na parede da tubulação sem escavar e sem mobilizar o robô de videoinspeção. É o primeiro olhar antes de decidir a intervenção.</p>
+        <p class="eyebrow">Como funciona a operação</p>
+        <dl class="spec">
+          <dt>1. Levantamento</dt><dd>Mapeamento dos trechos, pontos críticos e acessos. Programação por rota.</dd>
+          <dt>2. Sinalização</dt><dd>Isolamento da área conforme as normas de trânsito e segurança viária.</dd>
+          <dt>3. Hidrojato</dt><dd>Bico de alta pressão percorre o trecho e solta o material aderido às paredes.</dd>
+          <dt>4. Sucção</dt><dd>Sedimentos são aspirados para o tanque do caminhão pelo poço de visita.</dd>
+          <dt>5. Reciclagem</dt><dd>Água filtrada volta ao jato. Sólidos ficam retidos no compartimento de resíduos.</dd>
+          <dt>6. Registro</dt><dd>Relatório fotográfico, metragem e medição por trecho.</dd>
+          <dt>7. Destinação</dt><dd>Resíduo desidratado, pesado e encaminhado a aterro licenciado.</dd>
+        </dl>
+      </div>
+      <div class="box fill">
+        <p class="eyebrow">Equipamentos usados nesta frente</p>
+        <div class="feats one" style="gap:2.5mm">
+          <div class="f"><svg class="ic sm"><use href="#i-truck"/></svg><div><p><strong>Caminhão combinado hidrojato/sucção</strong> para galerias e poços de visita.</p></div></div>
+          <div class="f"><svg class="ic sm"><use href="#i-recycle"/></svg><div><p><strong>Caminhão reciclador</strong> para operações longas com reuso de água.</p></div></div>
+          <div class="f"><svg class="ic sm"><use href="#i-camera"/></svg><div><p><strong>Câmera periscópica</strong> para conferir o resultado sem entrar na rede.</p></div></div>
+          <div class="f"><svg class="ic sm"><use href="#i-robot"/></svg><div><p><strong>Robô de videoinspeção</strong> quando o trecho exige laudo.</p></div></div>
+        </div>
+      </div>
+      <div class="cols cols-2" style="gap:4mm">
+        <div class="stat"><span class="v">2002</span><span class="l">desde</span><span class="d muted">na microdrenagem da capital paulista</span></div>
+        <div class="stat"><span class="v">100%</span><span class="l">pelo PV</span><span class="d muted">limpeza sem abertura de vala</span></div>
       </div>
     </div>
   </div>
-  <div class="steps" style="margin-top:7mm">
-    <div class="st"><b>OCORRÊNCIA</b><span>Chamado ou rota programada de manutenção.</span></div>
+  <img class="wm" src="assets/simbolo.png" alt="">
+  <footer class="foot"><span>Norte Sul · Metropolitana Ambiental</span><span class="n">07</span></footer>
+</section></div>
+
+<!-- ============ 08 ESGOTOS 1 ============ -->
+<div class="slot" id="p08"><section class="sheet">
+  <header class="head"><img class="sym" src="assets/simbolo.png" alt=""><span class="sec">Esgotos · 1 de 2</span></header>
+  <p class="eyebrow" style="margin-bottom:3mm">Frente 02</p>
+  <h2 style="max-width:150mm">Rede de esgoto desobstruída, do ramal da casa ao coletor da avenida.</h2>
+  <p class="lead" style="margin-top:4mm;max-width:155mm">Atuamos na manutenção de sistemas de esgotamento sanitário: desobstrução, limpeza e conservação de redes coletoras, ramais prediais, poços de visita e estações elevatórias. Trabalhamos com uma escala de equipamentos que vai do caminhão hidrojato ao kit compacto sobre motocicleta, para chegar onde o caminhão não passa.</p>
+  <h4 class="blue" style="margin-top:8mm;margin-bottom:4mm">O que entra no serviço</h4>
+  <div class="feats" style="gap:5mm 8mm">
+    <div class="f"><svg class="ic"><use href="#i-pipe"/></svg><div><h3>Desobstrução de redes coletoras</h3><p>Hidrojateamento remove gordura, raízes, areia e sedimentos das redes coletoras e interceptores, restabelecendo o escoamento por gravidade.</p></div></div>
+    <div class="f"><svg class="ic"><use href="#i-moto"/></svg><div><h3>Desobstrução de ramais prediais</h3><p>Em vias estreitas, ladeiras e vielas, com equipamento compacto montado sobre motocicleta. Resolve a maior parte das ocorrências de ramal sem mobilizar caminhão.</p></div></div>
+    <div class="f"><svg class="ic"><use href="#i-manhole"/></svg><div><h3>Poços de visita e elevatórias</h3><p>Limpeza com sucção a vácuo, remoção de lodo e material sedimentado, verificação de tampões e condições estruturais.</p></div></div>
+    <div class="f"><svg class="ic"><use href="#i-scope"/></svg><div><h3>Inspeção com câmera periscópica</h3><p>Olhar dentro do tubo antes e depois do serviço, a partir do poço de visita, para confirmar a causa e comprovar o resultado.</p></div></div>
+    <div class="f"><svg class="ic"><use href="#i-alert"/></svg><div><h3>Atendimento a ocorrências</h3><p>Extravasamento em via pública, refluxo em imóveis e obstruções em rede pública, com atendimento programado ou emergencial.</p></div></div>
+    <div class="f"><svg class="ic"><use href="#i-clock"/></svg><div><h3>Manutenção preventiva</h3><p>Rotas de limpeza periódica em trechos com histórico de gordura, raízes ou baixa declividade, dentro de contratos de O&amp;M.</p></div></div>
+    <div class="f"><svg class="ic"><use href="#i-filter"/></svg><div><h3>Gestão do resíduo</h3><p>Lodo e material retirado são transportados e destinados em conformidade com a legislação ambiental.</p></div></div>
+    <div class="f"><svg class="ic"><use href="#i-doc"/></svg><div><h3>Registro por ocorrência</h3><p>Cada atendimento gera registro fotográfico, localização, metragem e descrição da causa, alimentando o histórico da rede.</p></div></div>
+  </div>
+  <div class="steps" style="margin-top:8mm">
+    <div class="st"><b>OCORRÊNCIA</b><span>Chamado do cliente ou rota programada de manutenção.</span></div>
     <div class="st"><b>DIAGNÓSTICO</b><span>Periscópio ou vídeo aponta a causa e o ponto exato.</span></div>
     <div class="st"><b>INTERVENÇÃO</b><span>Hidrojato, sucção ou kit compacto, conforme o acesso.</span></div>
     <div class="st"><b>ENTREGA</b><span>Rede liberada, registro fotográfico e medição.</span></div>
   </div>
   <img class="wm" src="assets/simbolo.png" alt="">
-  <footer class="foot"><span>Norte Sul · Metropolitana Ambiental</span><span class="n">05</span></footer>
+  <footer class="foot"><span>Norte Sul · Metropolitana Ambiental</span><span class="n">08</span></footer>
 </section></div>
 
-<!-- ============ 06 INSPEÇÃO ============ -->
-<div class="slot"><section class="sheet">
-  <header class="head"><img class="sym" src="assets/simbolo.png" alt=""><span class="sec">Inspeção de tubulações</span></header>
+<!-- ============ 09 ESGOTOS 2 ============ -->
+<div class="slot" id="p09"><section class="sheet">
+  <header class="head"><img class="sym" src="assets/simbolo.png" alt=""><span class="sec">Esgotos · 2 de 2</span></header>
+  <div class="cols cols-2">
+    <div class="stack">
+      <div class="box bluebg">
+        <div style="display:flex;align-items:center;gap:3mm"><svg class="ic"><use href="#i-moto"/></svg><p class="eyebrow">Destaque</p></div>
+        <h3>Desobstrução sobre motocicleta</h3>
+        <p>Equipamento compacto de desobstrução de ramais de esgoto montado sobre uma motocicleta. Chega rápido, entra em rua sem saída, não bloqueia a via e resolve a ocorrência sem mobilizar caminhão. Ideal para zeladoria de bairros densos e para contratos com alto volume de chamados de ramal.</p>
+      </div>
+      <div class="photo r43"><span class="k">Foto</span><span class="t">Kit de desobstrução sobre motocicleta</span></div>
+      <div class="box">
+        <div style="display:flex;align-items:center;gap:3mm"><svg class="ic"><use href="#i-scope"/></svg><p class="eyebrow">Câmera periscópica</p></div>
+        <p>Usada para inspeção visual de tubulações enterradas a partir do poço de visita. Permite ver o interior do tubo e identificar obstruções, vazamentos, fissuras, deslocamentos e danos na parede da tubulação sem escavar e sem mobilizar o robô de videoinspeção. É o primeiro olhar antes de decidir a intervenção.</p>
+      </div>
+    </div>
+    <div class="stack">
+      <h4 class="blue">Causas mais comuns que atendemos</h4>
+      <div class="list">
+        <div class="it"><h3>Gordura</h3><p>Acúmulo nas paredes do tubo em trechos próximos a comércio e restaurantes. Removida com hidrojato e bico rotativo.</p></div>
+        <div class="it"><h3>Raízes</h3><p>Entram pelas juntas e crescem dentro da rede. Cortadas com bico específico e registradas para reabilitação futura.</p></div>
+        <div class="it"><h3>Areia e sedimento</h3><p>Baixa declividade ou infiltração de solo. Sucção a vácuo e verificação da junta que permitiu a entrada.</p></div>
+        <div class="it"><h3>Objetos e entulho</h3><p>Lançamentos indevidos na rede. Retirados mecanicamente pelo poço de visita.</p></div>
+        <div class="it"><h3>Colapso estrutural</h3><p>Tubo quebrado ou abatido. Identificado no vídeo e encaminhado para reparo pontual ou CIPP-UV.</p></div>
+      </div>
+      <div class="photo grow"><span class="k">Foto</span><span class="t">Hidrojateamento de rede coletora pelo poço de visita</span></div>
+    </div>
+  </div>
+  <img class="wm" src="assets/simbolo.png" alt="">
+  <footer class="foot"><span>Norte Sul · Metropolitana Ambiental</span><span class="n">09</span></footer>
+</section></div>
+
+<!-- ============ 10 INSPEÇÃO 1 ============ -->
+<div class="slot" id="p10"><section class="sheet">
+  <header class="head"><img class="sym" src="assets/simbolo.png" alt=""><span class="sec">Inspeção de tubulações · 1 de 2</span></header>
   <p class="eyebrow" style="margin-bottom:3mm">Frente 03</p>
   <h2 style="max-width:155mm">Antes de abrir a rua, a gente olha por dentro do tubo.</h2>
-  <p class="lead" style="margin-top:4mm;max-width:150mm">A inspeção por circuito fechado de TV (videoinspeção robotizada) mostra a situação real, estrutural e hidráulica, de redes de esgoto e drenagem. O resultado é um laudo com diagnóstico e recomendação de correção para cada anomalia encontrada, que orienta a decisão entre limpar, reabilitar ou substituir.</p>
+  <p class="lead" style="margin-top:4mm;max-width:155mm">A inspeção por circuito fechado de TV (videoinspeção robotizada) mostra a situação real, estrutural e hidráulica, de redes de esgoto e drenagem. O resultado é um laudo com diagnóstico e recomendação de correção para cada anomalia encontrada, que orienta a decisão entre limpar, reabilitar ou substituir.</p>
   <div class="cols cols-2" style="margin-top:8mm">
     <div class="stack">
-      <div class="box fill">
-        <p class="eyebrow">O equipamento</p>
-        <ul class="tight">
-          <li><strong>Câmera robotizada</strong> que percorre a tubulação por controle remoto, sem que o operador precise entrar na rede.</li>
-          <li><strong>Painel de controle na cabine do veículo</strong>, com comando de toda a operação do robô e da câmera: giro de 360°, avanço e recuo, ajuste de luminosidade e foco.</li>
-          <li><strong>Carretel de cabo elétrico com registro de distância</strong>, que permite filmar trechos de até 120 metros de extensão a partir de um único poço de visita.</li>
-          <li><strong>Sensor de inclinação</strong> que registra a declividade do tubo ao longo do trecho e revela contra-declives e abatimentos.</li>
-          <li><strong>Sensor laser</strong> que mede a largura de furos, trincas e juntas deslocadas.</li>
-        </ul>
+      <h4 class="blue">O equipamento</h4>
+      <div class="feats one" style="gap:3.5mm">
+        <div class="f"><svg class="ic"><use href="#i-robot"/></svg><div><h3>Câmera robotizada</h3><p>Percorre a tubulação por controle remoto, sem que o operador precise entrar na rede.</p></div></div>
+        <div class="f"><svg class="ic"><use href="#i-gear"/></svg><div><h3>Painel de controle na cabine</h3><p>Comando de toda a operação do robô e da câmera de dentro do veículo: giro de 360°, avanço e recuo, ajuste de luminosidade e foco.</p></div></div>
+        <div class="f"><svg class="ic"><use href="#i-pipe"/></svg><div><h3>Carretel com registro de distância</h3><p>Cabo elétrico acionado por motor, com metragem gravada no vídeo. Filma trechos de até 120 metros a partir de um único poço de visita.</p></div></div>
+        <div class="f"><svg class="ic"><use href="#i-chart"/></svg><div><h3>Sensor de inclinação</h3><p>Registra a declividade do tubo ao longo do trecho e revela contra-declives e abatimentos.</p></div></div>
+        <div class="f"><svg class="ic"><use href="#i-scope"/></svg><div><h3>Sensor laser</h3><p>Mede a largura de furos, trincas e juntas deslocadas, dando dimensão ao defeito.</p></div></div>
       </div>
-      <div class="box">
+    </div>
+    <div class="stack">
+      <div class="photo r43"><span class="k">Foto</span><span class="t">Robô de videoinspeção entrando no poço de visita</span></div>
+      <div class="box fill">
         <p class="eyebrow">O que o laudo entrega</p>
         <ul class="tight">
           <li>Vídeo completo do trecho, com metragem e legenda das anomalias.</li>
           <li>Classificação de cada defeito: estrutural (trinca, fratura, colapso, infiltração) ou operacional (raiz, gordura, sedimento, obstrução).</li>
           <li>Perfil de declividade e pontos de acúmulo.</li>
           <li>Recomendação técnica: limpeza, reparo pontual, reabilitação por CIPP ou substituição.</li>
+          <li>Base para cadastro e priorização de investimento.</li>
         </ul>
       </div>
-    </div>
-    <div class="stack">
-      <h4 style="color:var(--azul)">Onde se aplica</h4>
-      <div class="list">
-        <div class="it"><h3>Redes novas</h3><p>Recebimento de obra. Confirma que a rede foi executada como projetada antes de aceitar a entrega.</p></div>
-        <div class="it"><h3>Redes antigas</h3><p>Diagnóstico de tubulações cerâmicas, de concreto ou ferro com décadas de uso, para planejar reabilitação.</p></div>
-        <div class="it"><h3>Pontos críticos</h3><p>Alagamentos e refluxos recorrentes. A câmera mostra se a causa é assoreamento, colapso ou ligação irregular.</p></div>
-        <div class="it"><h3>Cadastro</h3><p>Levantamento de traçado, diâmetro, material e estado de conservação para compor o cadastro técnico.</p></div>
-        <div class="it"><h3>Pós-serviço</h3><p>Comprovação da limpeza ou reabilitação executada, com vídeo antes e depois.</p></div>
-      </div>
-    </div>
-  </div>
-  <img class="wm" src="assets/simbolo.png" alt="">
-  <footer class="foot"><span>Norte Sul · Metropolitana Ambiental</span><span class="n">06</span></footer>
-</section></div>
-
-<!-- ============ 07 MND / CIPP-UV ============ -->
-<div class="slot"><section class="sheet dark">
-  <header class="head"><img class="sym" src="assets/simbolo-white.png" alt=""><span class="sec">Obras por método não destrutivo</span></header>
-  <p class="eyebrow" style="margin-bottom:3mm">Frente 04 · CIPP-UV</p>
-  <h2 style="max-width:155mm">Tubo novo dentro do tubo velho. Sem vala, sem asfalto quebrado, rua liberada no mesmo dia.</h2>
-  <p class="lead" style="margin-top:4mm;max-width:150mm;opacity:.92">O CIPP (Cured-In-Place Pipe) é uma técnica de reabilitação em que um liner flexível, de resina reforçada com fibra de vidro, é introduzido na tubulação existente, inflado e curado por luz ultravioleta. Em pouco tempo ele se torna um tubo estrutural, moldado ao tubo antigo, sem nenhuma intervenção no asfalto.</p>
-  <div class="cols cols-2" style="margin-top:8mm">
-    <div class="stack">
-      <h4>Por que vale a pena</h4>
-      <ul>
-        <li><strong>Sem escavação.</strong> O trabalho acontece de poço de visita a poço de visita. Nada de vala aberta, desvio de trânsito por semanas ou recomposição de pavimento.</li>
-        <li><strong>Rápido.</strong> A cura por UV leva minutos por trecho. Assim que o trem de luz termina o percurso, a rede volta a operar.</li>
-        <li><strong>Estrutural.</strong> O liner é 100% estrutural: sela trincas, infiltrações e juntas abertas e restabelece a capacidade da rede.</li>
-        <li><strong>Menor custo total.</strong> Menos mão de obra, menos interferência com outras redes, menos transtorno para comércio e moradores.</li>
-        <li><strong>Vida útil longa.</strong> Recupera redes cerâmicas, de concreto ou ferro fundido com décadas de uso, prolongando sua vida por várias outras.</li>
-      </ul>
-    </div>
-    <div class="stack">
-      <div class="box" style="border-color:rgba(255,255,255,.5)">
-        <p class="eyebrow">Passo a passo</p>
-        <dl class="spec" style="color:#fff">
-          <dt style="color:#fff">1. Inspeção</dt><dd>Videoinspeção define diâmetro, extensão e defeitos do trecho.</dd>
-          <dt style="color:#fff">2. Limpeza</dt><dd>Hidrojato remove sedimentos e raízes para o liner assentar.</dd>
-          <dt style="color:#fff">3. Inserção</dt><dd>Liner é puxado pelo interior do tubo entre dois poços.</dd>
-          <dt style="color:#fff">4. Inflagem</dt><dd>Ar comprimido molda o liner à parede do tubo hospedeiro.</dd>
-          <dt style="color:#fff">5. Cura UV</dt><dd>Trem de luz ultravioleta percorre o trecho e endurece a resina.</dd>
-          <dt style="color:#fff">6. Reabertura</dt><dd>Robô cortador reabre os ramais. Vídeo final comprova o resultado.</dd>
-        </dl>
-      </div>
-      <div class="box" style="background:#fff;color:var(--preto);border-color:transparent">
-        <p class="eyebrow" style="color:var(--azul);opacity:1">Caso · SANASA Campinas</p>
-        <p>Renovação de três trechos de tubulação cerâmica de 150 mm em Campinas, SP, a serviço da SANASA, pelo método CIPP-UV. A rede antiga recebeu o novo tubo estrutural sem nenhuma abertura de vala, recuperando eficiência hidráulica e vida útil da infraestrutura existente.</p>
-      </div>
-    </div>
-  </div>
-  <footer class="foot"><span>Norte Sul · Metropolitana Ambiental</span><span class="n">07</span></footer>
-</section></div>
-
-<!-- ============ 08 GESTÃO AMBIENTAL / SERVIÇOS TÉCNICOS ============ -->
-<div class="slot"><section class="sheet">
-  <header class="head"><img class="sym" src="assets/simbolo.png" alt=""><span class="sec">Gestão ambiental · Serviços técnicos</span></header>
-  <p class="eyebrow" style="margin-bottom:3mm">Frentes 05 e 06</p>
-  <h2 style="max-width:155mm">Operar a rede inteira, não só apagar incêndio.</h2>
-  <p class="lead" style="margin-top:4mm;max-width:150mm">Além dos serviços pontuais, assumimos a gestão ambiental de operação e manutenção (O&amp;M) de sistemas de esgoto e drenagem. É a diferença entre ser chamado quando alaga e cuidar para que não alague.</p>
-  <div class="cols cols-2" style="margin-top:8mm">
-    <div class="stack">
-      <div class="box blue">
-        <p class="eyebrow">Frente 05</p>
-        <h3>Gestão ambiental de O&amp;M</h3>
-        <p>Gestão técnico-operacional contínua do sistema: planejamento de rotas de limpeza, controle de ocorrências, indicadores de desempenho, manutenção preventiva e corretiva, equipe e frota dedicadas ao contrato.</p>
-        <ul class="tight" style="color:#fff">
-          <li>Plano de manutenção por bacia ou setor.</li>
-          <li>Central de ocorrências e atendimento a chamados.</li>
-          <li>Relatórios mensais para fiscalização e medição.</li>
-          <li>Gestão de resíduos e licenças ambientais.</li>
-        </ul>
-      </div>
-      <div class="box fill">
-        <p class="eyebrow">Frente 06</p>
-        <h3>Situações emergenciais</h3>
-        <p>Equipes e equipamentos prontos para extravasamento de esgoto, alagamento, colapso de galeria e obstrução em via pública, com mobilização rápida e registro completo da intervenção.</p>
-      </div>
-    </div>
-    <div class="stack">
-      <h4 style="color:var(--azul)">Serviços técnicos</h4>
-      <div class="list">
-        <div class="it"><h3>Cadastro de redes</h3><p>Levantamento de traçado, diâmetros, materiais, profundidades e estado de conservação, com base em inspeção de campo e videoinspeção.</p></div>
-        <div class="it"><h3>Diagnóstico</h3><p>Análise das anomalias estruturais e hidráulicas de cada trecho e identificação das causas de alagamento, refluxo e infiltração.</p></div>
-        <div class="it"><h3>Prognóstico de pontos críticos</h3><p>Classificação de risco e priorização de investimento: o que limpar, o que reabilitar e o que substituir, e em que ordem.</p></div>
-        <div class="it"><h3>Apoio técnico</h3><p>Suporte a planos de segurança da água e programas de saneamento junto a autarquias e concessionárias.</p></div>
-        <div class="it"><h3>Equipamentos</h3><p>Fabricação e adaptação de máquinas e acessórios para saneamento, ajustados à realidade de cada operação.</p></div>
-      </div>
-    </div>
-  </div>
-  <img class="wm" src="assets/simbolo.png" alt="">
-  <footer class="foot"><span>Norte Sul · Metropolitana Ambiental</span><span class="n">08</span></footer>
-</section></div>
-
-<!-- ============ 09 EQUIPAMENTOS ============ -->
-<div class="slot"><section class="sheet">
-  <header class="head"><img class="sym" src="assets/simbolo.png" alt=""><span class="sec">Equipamentos e frota</span></header>
-  <p class="eyebrow" style="margin-bottom:3mm">Tecnologia que combina desempenho e responsabilidade ambiental</p>
-  <h2 style="max-width:155mm">A ferramenta certa para cada diâmetro, cada rua e cada tipo de problema.</h2>
-  <div class="svc" style="margin-top:9mm;gap:6mm 8mm">
-    <div class="c"><span class="k">DRENAGEM · ESGOTO</span><h3>Caminhão reciclador (hidrossucção)</h3><p>Limpa galerias, ramais e bocas de lobo reutilizando a água do próprio sistema. Separa os sólidos durante a operação e mantém o mesmo volume de água circulando. Mais autonomia, menos água potável consumida.</p></div>
-    <div class="c"><span class="k">DRENAGEM · ESGOTO</span><h3>Caminhão hidrojato e sucção a vácuo</h3><p>Alta pressão para soltar o material aderido às paredes do tubo e sucção para retirar sedimentos, areia e entulho de galerias, poços de visita e elevatórias.</p></div>
-    <div class="c"><span class="k">ESGOTO</span><h3>Kit compacto sobre motocicleta</h3><p>Desobstrução de ramais de esgoto em ruas estreitas, vielas e ladeiras, sem bloquear a via e sem mobilizar caminhão.</p></div>
-    <div class="c"><span class="k">INSPEÇÃO</span><h3>Robô de videoinspeção (CFTV)</h3><p>Câmera com giro de 360°, carretel com registro de distância para trechos de até 120 m, sensor de inclinação e sensor laser para medição de defeitos. Operado da cabine do veículo.</p></div>
-    <div class="c"><span class="k">INSPEÇÃO</span><h3>Câmera periscópica</h3><p>Inspeção visual rápida a partir do poço de visita para identificar obstruções, fissuras, deslocamentos e vazamentos antes de decidir a intervenção.</p></div>
-    <div class="c"><span class="k">MND</span><h3>Trem de luz UV e liner de fibra de vidro</h3><p>Conjunto para reabilitação CIPP-UV: inserção do liner, inflagem, cura por ultravioleta e reabertura de ramais por robô cortador.</p></div>
-  </div>
-  <div class="cols cols-3" style="margin-top:9mm;gap:5mm">
-    <div class="stat"><span class="v">120 m</span><span class="l">por poço de visita</span><span class="d muted">alcance de filmagem do robô de videoinspeção</span></div>
-    <div class="stat"><span class="v">360°</span><span class="l">de giro da câmera</span><span class="d muted">comandado da cabine do veículo</span></div>
-    <div class="stat"><span class="v">0</span><span class="l">valas abertas</span><span class="d muted">na reabilitação de redes por CIPP-UV</span></div>
-  </div>
-  <div class="box fill" style="margin-top:8mm">
-    <p class="eyebrow">Equipes</p>
-    <p>Operadores treinados em espaço confinado e sinalização viária, engenheiro responsável por contrato, apoio administrativo para medições e relatórios. Toda a operação acompanha as normas de segurança do trabalho aplicáveis.</p>
-  </div>
-  <img class="wm" src="assets/simbolo.png" alt="">
-  <footer class="foot"><span>Norte Sul · Metropolitana Ambiental</span><span class="n">09</span></footer>
-</section></div>
-
-<!-- ============ 10 EXPERIÊNCIA E DIFERENCIAIS ============ -->
-<div class="slot"><section class="sheet">
-  <header class="head"><img class="sym" src="assets/simbolo.png" alt=""><span class="sec">Experiência e diferenciais</span></header>
-  <p class="eyebrow" style="margin-bottom:3mm">Para quem já trabalhamos</p>
-  <h2 style="max-width:155mm">Quem contrata saneamento público precisa de quem já entregou saneamento público.</h2>
-  <p class="lead" style="margin-top:4mm;max-width:150mm">Nossa carteira é formada principalmente por órgãos públicos e companhias de saneamento do estado de São Paulo, atendidos por contrato direto ou por licitação, com todas as exigências de habilitação, medição e fiscalização que esse mercado pede.</p>
-  <div class="cols cols-3" style="margin-top:8mm;gap:5mm">
-    <div class="box"><p class="eyebrow">Companhia de saneamento</p><h3>SANASA · Campinas</h3><p class="small">Reabilitação de tubulações cerâmicas de esgoto pelo método CIPP-UV, sem abertura de vala.</p></div>
-    <div class="box"><p class="eyebrow">Município</p><h3>Prefeitura de São Paulo</h3><p class="small">Prestação de serviços de limpeza mecanizada do sistema de drenagem, em contrato com a administração municipal.</p></div>
-    <div class="box"><p class="eyebrow">Autarquia</p><h3>SEMAE · Mogi das Cruzes</h3><p class="small">Apoio técnico ao desenvolvimento do Plano de Segurança da Água da autarquia.</p></div>
-  </div>
-  <div class="cols cols-2" style="margin-top:8mm">
-    <div class="stack">
-      <h4 style="color:var(--azul)">Por que Norte Sul + Metropolitana</h4>
-      <ul>
-        <li><strong>Ciclo completo.</strong> Inspeção, limpeza, reabilitação e gestão com a mesma equipe. Sem empurrar o problema para outro fornecedor.</li>
-        <li><strong>Tecnologia própria de trabalho.</strong> Caminhão reciclador, robô de videoinspeção e CIPP-UV reduzem transtorno, água e tempo de obra.</li>
-        <li><strong>Experiência com o setor público.</strong> Trinta e cinco anos atendendo prefeituras, autarquias e concessionárias.</li>
-        <li><strong>Duas empresas, uma operação.</strong> Capacidade de mobilização ampliada e um único responsável perante o cliente.</li>
-      </ul>
-    </div>
-    <div class="stack">
-      <h4 style="color:var(--azul)">Habilitação</h4>
-      <dl class="spec">
-        <dt>Razão social</dt><dd>Norte-Sul Hidrotecnologia e Comércio Ltda.</dd>
-        <dt>CNPJ</dt><dd>38.980.710/0001-06 (matriz, Hortolândia)</dd>
-        <dt>Fundação</dt><dd>22 de junho de 1990</dd>
-        <dt>Atividade principal</dt><dd>Atividades relacionadas a esgoto</dd>
-        <dt>Atividades secundárias</dt><dd>Gestão de resíduos, descontaminação, fabricação de equipamentos para saneamento</dd>
-        <dt>Empresa aliada</dt><dd>Metropolitana Ambiental Ltda.</dd>
-      </dl>
-      <p class="small muted">Documentação de habilitação técnica, atestados de capacidade e certidões disponíveis sob solicitação.</p>
     </div>
   </div>
   <img class="wm" src="assets/simbolo.png" alt="">
   <footer class="foot"><span>Norte Sul · Metropolitana Ambiental</span><span class="n">10</span></footer>
 </section></div>
 
-<!-- ============ 11 CONTATO / CONTRACAPA ============ -->
-<div class="slot"><section class="sheet dark">
+<!-- ============ 11 INSPEÇÃO 2 ============ -->
+<div class="slot" id="p11"><section class="sheet">
+  <header class="head"><img class="sym" src="assets/simbolo.png" alt=""><span class="sec">Inspeção de tubulações · 2 de 2</span></header>
+  <div class="cols cols-2">
+    <div class="stack">
+      <h4 class="blue">Onde se aplica</h4>
+      <div class="list">
+        <div class="it"><h3>Redes novas</h3><p>Recebimento de obra. Confirma que a rede foi executada como projetada antes de aceitar a entrega.</p></div>
+        <div class="it"><h3>Redes antigas</h3><p>Diagnóstico de tubulações cerâmicas, de concreto ou ferro com décadas de uso, para planejar reabilitação.</p></div>
+        <div class="it"><h3>Pontos críticos</h3><p>Alagamentos e refluxos recorrentes. A câmera mostra se a causa é assoreamento, colapso ou ligação irregular.</p></div>
+        <div class="it"><h3>Cadastro</h3><p>Levantamento de traçado, diâmetro, material e estado de conservação para compor o cadastro técnico.</p></div>
+        <div class="it"><h3>Pós-serviço</h3><p>Comprovação da limpeza ou reabilitação executada, com vídeo antes e depois.</p></div>
+        <div class="it"><h3>Ligações irregulares</h3><p>Identificação de ligações de esgoto em galerias pluviais e vice-versa, com localização por metragem.</p></div>
+      </div>
+      <div class="photo grow"><span class="k">Foto</span><span class="t">Veículo de videoinspeção em campo</span></div>
+    </div>
+    <div class="stack">
+      <div class="box">
+        <p class="eyebrow">Tipos de defeito que o vídeo revela</p>
+        <div class="feats" style="gap:3mm 5mm">
+          <div class="f"><svg class="ic sm"><use href="#i-alert"/></svg><div><p><strong>Trinca e fratura</strong> longitudinal ou circunferencial.</p></div></div>
+          <div class="f"><svg class="ic sm"><use href="#i-layers"/></svg><div><p><strong>Colapso e abatimento</strong> de trecho.</p></div></div>
+          <div class="f"><svg class="ic sm"><use href="#i-water"/></svg><div><p><strong>Infiltração</strong> por junta ou parede.</p></div></div>
+          <div class="f"><svg class="ic sm"><use href="#i-cut"/></svg><div><p><strong>Junta deslocada</strong> ou aberta.</p></div></div>
+          <div class="f"><svg class="ic sm"><use href="#i-leaf"/></svg><div><p><strong>Raízes</strong> e intrusões.</p></div></div>
+          <div class="f"><svg class="ic sm"><use href="#i-filter"/></svg><div><p><strong>Sedimento, gordura</strong> e obstrução.</p></div></div>
+          <div class="f"><svg class="ic sm"><use href="#i-chart"/></svg><div><p><strong>Contra-declive</strong> e retenção de água.</p></div></div>
+          <div class="f"><svg class="ic sm"><use href="#i-pipe"/></svg><div><p><strong>Ligação irregular</strong> ou ramal saliente.</p></div></div>
+        </div>
+      </div>
+      <div class="photos">
+        <div class="photo r1"><span class="k">Foto</span><span class="t">Imagem interna da rede</span></div>
+        <div class="photo r1"><span class="k">Foto</span><span class="t">Painel de controle na cabine</span></div>
+      </div>
+      <div class="cols cols-2" style="gap:4mm">
+        <div class="stat"><span class="v">120 m</span><span class="l">por poço de visita</span><span class="d muted">alcance de filmagem do robô</span></div>
+        <div class="stat"><span class="v">360°</span><span class="l">de giro da câmera</span><span class="d muted">comandado da cabine</span></div>
+      </div>
+    </div>
+  </div>
+  <img class="wm" src="assets/simbolo.png" alt="">
+  <footer class="foot"><span>Norte Sul · Metropolitana Ambiental</span><span class="n">11</span></footer>
+</section></div>
+
+<!-- ============ 12 MND / CIPP-UV 1 ============ -->
+<div class="slot" id="p12"><section class="sheet dark">
+  <header class="head"><img class="sym" src="assets/simbolo-white.png" alt=""><span class="sec">Obras por método não destrutivo · 1 de 2</span></header>
+  <p class="eyebrow" style="margin-bottom:3mm">Frente 04 · CIPP-UV</p>
+  <h2 style="max-width:160mm">Tubo novo dentro do tubo velho. Sem vala, sem asfalto quebrado, rua liberada no mesmo dia.</h2>
+  <p class="lead" style="margin-top:4mm;max-width:155mm;opacity:.92">O CIPP (Cured-In-Place Pipe) é uma técnica de reabilitação em que um liner flexível, de resina reforçada com fibra de vidro, é introduzido na tubulação existente, inflado e curado por luz ultravioleta. Em pouco tempo ele se torna um tubo estrutural, moldado ao tubo antigo, sem nenhuma intervenção no asfalto.</p>
+  <div class="cols cols-2" style="margin-top:8mm">
+    <div class="stack">
+      <h4>Por que vale a pena</h4>
+      <div class="feats one" style="gap:3.5mm">
+        <div class="f"><svg class="ic"><use href="#i-road"/></svg><div><h3>Sem escavação</h3><p>O trabalho acontece de poço de visita a poço de visita. Nada de vala aberta, desvio de trânsito por semanas ou recomposição de pavimento.</p></div></div>
+        <div class="f"><svg class="ic"><use href="#i-clock"/></svg><div><h3>Rápido</h3><p>A cura por UV leva minutos por trecho. Assim que o trem de luz termina o percurso, a rede volta a operar.</p></div></div>
+        <div class="f"><svg class="ic"><use href="#i-layers"/></svg><div><h3>Estrutural</h3><p>O liner é 100% estrutural: sela trincas, infiltrações e juntas abertas e restabelece a capacidade da rede.</p></div></div>
+        <div class="f"><svg class="ic"><use href="#i-chart"/></svg><div><h3>Menor custo total</h3><p>Menos mão de obra, menos interferência com outras redes enterradas, menos transtorno para comércio e moradores.</p></div></div>
+        <div class="f"><svg class="ic"><use href="#i-shield"/></svg><div><h3>Vida útil longa</h3><p>Recupera redes cerâmicas, de concreto ou ferro fundido com décadas de uso, prolongando sua vida por várias outras.</p></div></div>
+        <div class="f"><svg class="ic"><use href="#i-drop"/></svg><div><h3>Menos perdas</h3><p>Ao selar juntas e trincas, reduz infiltração de água de chuva no esgoto e vazamento de esgoto no solo.</p></div></div>
+      </div>
+    </div>
+    <div class="stack">
+      <div class="vs">
+        <div><span class="hd">Obra convencional</span><ul class="tight"><li>Abertura de vala em toda a extensão</li><li>Remoção e recomposição de asfalto</li><li>Interferência com água, gás, energia e telecom</li><li>Semanas de rua interditada</li><li>Entulho e bota-fora</li></ul></div>
+        <div><span class="hd">CIPP-UV</span><ul class="tight"><li>Acesso só pelos poços de visita</li><li>Pavimento intacto</li><li>Nenhuma interferência com outras redes</li><li>Horas de trabalho por trecho</li><li>Sem entulho</li></ul></div>
+      </div>
+      <div class="photo r43"><span class="k">Foto</span><span class="t">Trem de luz UV sendo inserido no liner</span></div>
+    </div>
+  </div>
+  <footer class="foot"><span>Norte Sul · Metropolitana Ambiental</span><span class="n">12</span></footer>
+</section></div>
+
+<!-- ============ 13 MND / CIPP-UV 2 ============ -->
+<div class="slot" id="p13"><section class="sheet dark">
+  <header class="head"><img class="sym" src="assets/simbolo-white.png" alt=""><span class="sec">Obras por método não destrutivo · 2 de 2</span></header>
+  <h4 style="margin-bottom:5mm">Passo a passo da reabilitação</h4>
+  <div class="steps s6">
+    <div class="st"><b>1 · INSPEÇÃO</b><span>Videoinspeção define diâmetro, extensão e defeitos do trecho.</span></div>
+    <div class="st"><b>2 · LIMPEZA</b><span>Hidrojato remove sedimentos e raízes para o liner assentar.</span></div>
+    <div class="st"><b>3 · INSERÇÃO</b><span>Liner é puxado pelo interior do tubo entre dois poços.</span></div>
+    <div class="st"><b>4 · INFLAGEM</b><span>Ar comprimido molda o liner à parede do tubo hospedeiro.</span></div>
+    <div class="st"><b>5 · CURA UV</b><span>Trem de luz ultravioleta percorre o trecho e endurece a resina.</span></div>
+    <div class="st"><b>6 · REABERTURA</b><span>Robô cortador reabre os ramais. Vídeo final comprova o resultado.</span></div>
+  </div>
+  <div class="cols cols-2" style="margin-top:10mm">
+    <div class="stack">
+      <div class="box white">
+        <div style="display:flex;align-items:center;gap:3mm"><svg class="ic"><use href="#i-flag"/></svg><p class="eyebrow">Caso · SANASA Campinas</p></div>
+        <p>Renovação de três trechos de tubulação cerâmica de 150 mm em Campinas, SP, a serviço da SANASA, pelo método CIPP-UV. A rede antiga recebeu o novo tubo estrutural sem nenhuma abertura de vala, recuperando eficiência hidráulica e vida útil da infraestrutura existente.</p>
+      </div>
+      <div class="photos">
+        <div class="photo r1"><span class="k">Foto</span><span class="t">Trecho antes da reabilitação</span></div>
+        <div class="photo r1"><span class="k">Foto</span><span class="t">Trecho depois do CIPP-UV</span></div>
+      </div>
+    </div>
+    <div class="stack">
+      <div class="box">
+        <p class="eyebrow">Onde o CIPP-UV se aplica</p>
+        <ul class="tight">
+          <li>Redes de esgoto e de drenagem com trincas, fraturas, infiltração ou juntas abertas.</li>
+          <li>Tubulações cerâmicas, de concreto, ferro fundido ou PVC.</li>
+          <li>Trechos sob avenidas, vias de tráfego pesado, calçadas comerciais e áreas onde abrir vala é inviável.</li>
+          <li>Interferência com outras redes enterradas que impede escavação.</li>
+          <li>Redes com muitas ligações de ramal, reabertas por robô cortador após a cura.</li>
+        </ul>
+      </div>
+      <div class="box">
+        <p class="eyebrow">Outros métodos não destrutivos</p>
+        <p class="small">Além do CIPP-UV, a Metropolitana Ambiental avalia para cada caso o reparo pontual por dentro do tubo e as demais técnicas de MND disponíveis no mercado, sempre partindo do laudo de videoinspeção.</p>
+      </div>
+      <div class="cols cols-2" style="gap:4mm">
+        <div class="stat"><span class="v">0</span><span class="l">valas abertas</span><span class="d muted">na reabilitação por CIPP-UV</span></div>
+        <div class="stat"><span class="v">PV a PV</span><span class="l">acesso</span><span class="d muted">somente pelos poços de visita</span></div>
+      </div>
+    </div>
+  </div>
+  <footer class="foot"><span>Norte Sul · Metropolitana Ambiental</span><span class="n">13</span></footer>
+</section></div>
+
+<!-- ============ 14 OBRAS DE SANEAMENTO ============ -->
+<div class="slot" id="p14"><section class="sheet">
+  <header class="head"><img class="sym" src="assets/simbolo.png" alt=""><span class="sec">Obras de saneamento</span></header>
+  <p class="eyebrow" style="margin-bottom:3mm">Frente 05</p>
+  <h2 style="max-width:155mm">Quando a rede precisa de mais do que limpeza, a gente executa a obra.</h2>
+  <p class="lead" style="margin-top:4mm;max-width:155mm">Serviços e obras de saneamento que complementam a manutenção: recuperação e execução de trechos de rede, poços de visita, caixas e dispositivos de drenagem. Sempre que possível, com método não destrutivo. Quando a escavação é inevitável, com sinalização, escoramento e recomposição do pavimento.</p>
+  <h4 class="blue" style="margin-top:8mm;margin-bottom:4mm">O que entra no serviço</h4>
+  <div class="feats" style="gap:5mm 8mm">
+    <div class="f"><svg class="ic"><use href="#i-wrench"/></svg><div><h3>Reparo pontual de redes</h3><p>Substituição de trechos rompidos de galerias e coletores identificados na videoinspeção, com recomposição do pavimento.</p></div></div>
+    <div class="f"><svg class="ic"><use href="#i-manhole"/></svg><div><h3>Poços de visita e caixas</h3><p>Construção, reforma e elevação de poços de visita, caixas de passagem, bocas de lobo e bocas de leão. Troca de tampões e grelhas.</p></div></div>
+    <div class="f"><svg class="ic"><use href="#i-pipe"/></svg><div><h3>Execução de trechos de rede</h3><p>Implantação de novos trechos de drenagem e esgoto, ligações e ramais, conforme projeto e especificação do cliente.</p></div></div>
+    <div class="f"><svg class="ic"><use href="#i-wave"/></svg><div><h3>Dispositivos de drenagem</h3><p>Sarjetas, sarjetões, dissipadores e travessias. Recuperação de canais e taludes em córregos.</p></div></div>
+    <div class="f"><svg class="ic"><use href="#i-drop"/></svg><div><h3>Redes de água</h3><p>Apoio a serviços em redes de distribuição de água, com foco em métodos que reduzem perdas.</p></div></div>
+    <div class="f"><svg class="ic"><use href="#i-road"/></svg><div><h3>Recomposição de pavimento</h3><p>Fechamento de vala, compactação e recomposição asfáltica ou de calçada nas obras que exigem escavação.</p></div></div>
+  </div>
+  <div class="cols cols-2" style="margin-top:8mm">
+    <div class="box fill">
+      <p class="eyebrow">Como decidimos entre MND e obra convencional</p>
+      <p class="small">O laudo de videoinspeção mostra o tipo e a extensão do defeito. Trinca, infiltração e junta aberta em tubo íntegro vão para CIPP-UV. Colapso total, tubo subdimensionado ou traçado errado vão para obra. Em muitos casos o resultado é um pacote: obra pontual no trecho colapsado e CIPP-UV no restante.</p>
+    </div>
+    <div class="photo grow"><span class="k">Foto</span><span class="t">Recuperação de poço de visita</span></div>
+  </div>
+  <h4 class="blue" style="margin-top:8mm;margin-bottom:4mm">Etapas de uma obra</h4>
+  <div class="steps s6">
+    <div class="st"><b>1 · LAUDO</b><span>Videoinspeção define o trecho e o tipo de intervenção.</span></div>
+    <div class="st"><b>2 · PROJETO</b><span>Levantamento de interferências e definição do método.</span></div>
+    <div class="st"><b>3 · ISOLAR</b><span>Isolamento da área e comunicação aos moradores.</span></div>
+    <div class="st"><b>4 · EXECUTAR</b><span>Obra com escoramento e esgotamento quando necessário.</span></div>
+    <div class="st"><b>5 · RECOMPOR</b><span>Reaterro, compactação e pavimento recomposto.</span></div>
+    <div class="st"><b>6 · ENTREGAR</b><span>Vídeo final, relatório fotográfico e medição.</span></div>
+  </div>
+  <img class="wm" src="assets/simbolo.png" alt="">
+  <footer class="foot"><span>Norte Sul · Metropolitana Ambiental</span><span class="n">14</span></footer>
+</section></div>
+
+<!-- ============ 15 GESTÃO AMBIENTAL / O&M ============ -->
+<div class="slot" id="p15"><section class="sheet">
+  <header class="head"><img class="sym" src="assets/simbolo.png" alt=""><span class="sec">Gestão ambiental e O&amp;M</span></header>
+  <p class="eyebrow" style="margin-bottom:3mm">Frente 06</p>
+  <h2 style="max-width:155mm">Operar a rede inteira, não só apagar incêndio.</h2>
+  <p class="lead" style="margin-top:4mm;max-width:155mm">Além dos serviços pontuais, assumimos a gestão ambiental de operação e manutenção (O&amp;M) de sistemas de esgoto e drenagem. É a diferença entre ser chamado quando alaga e cuidar para que não alague.</p>
+  <div class="cols cols-2" style="margin-top:8mm">
+    <div class="stack">
+      <h4 class="blue">O que o contrato de O&amp;M inclui</h4>
+      <div class="feats one" style="gap:3.5mm">
+        <div class="f"><svg class="ic"><use href="#i-map"/></svg><div><h3>Plano de manutenção</h3><p>Rotas de limpeza por bacia ou setor, com frequência definida pelo histórico de ocorrências e pela criticidade de cada trecho.</p></div></div>
+        <div class="f"><svg class="ic"><use href="#i-phone"/></svg><div><h3>Central de ocorrências</h3><p>Recebimento, triagem e despacho de chamados, com prazo de atendimento por tipo de ocorrência.</p></div></div>
+        <div class="f"><svg class="ic"><use href="#i-users"/></svg><div><h3>Equipe e frota dedicadas</h3><p>Operadores, encarregados e engenheiro responsável alocados ao contrato, com equipamentos dimensionados para a demanda.</p></div></div>
+        <div class="f"><svg class="ic"><use href="#i-chart"/></svg><div><h3>Indicadores de desempenho</h3><p>Metros limpos, ocorrências atendidas, tempo de resposta, pontos críticos resolvidos. Acompanhamento mensal.</p></div></div>
+        <div class="f"><svg class="ic"><use href="#i-doc"/></svg><div><h3>Relatórios para fiscalização</h3><p>Relatório mensal de medição com fotos, metragens, planilhas e mapas, pronto para a conferência do fiscal do contrato.</p></div></div>
+        <div class="f"><svg class="ic"><use href="#i-leaf"/></svg><div><h3>Gestão de resíduos e licenças</h3><p>Controle de transporte e destinação dos resíduos, manifestos e conformidade com a legislação ambiental.</p></div></div>
+      </div>
+    </div>
+    <div class="stack">
+      <div class="box bluebg">
+        <p class="eyebrow">Manutenção preventiva e corretiva</p>
+        <p>A preventiva segue o plano: rotas fixas, antes do período chuvoso, nos trechos com histórico. A corretiva atende o chamado: alagamento, extravasamento, obstrução. O contrato de O&amp;M equilibra as duas e, com o tempo, reduz a corretiva porque a rede passa a ser conhecida e cuidada.</p>
+      </div>
+      <div class="box">
+        <p class="eyebrow">Ciclo de um contrato de O&amp;M</p>
+        <dl class="spec">
+          <dt>Mês 1</dt><dd>Levantamento da rede, cadastro inicial e mapa de pontos críticos.</dd>
+          <dt>Mês 2 a 3</dt><dd>Limpeza corretiva dos pontos críticos e início das rotas preventivas.</dd>
+          <dt>Contínuo</dt><dd>Rotas, atendimento a ocorrências, videoinspeção dos trechos suspeitos.</dd>
+          <dt>Trimestral</dt><dd>Revisão do plano com base nos indicadores e nas chuvas do período.</dd>
+          <dt>Anual</dt><dd>Prognóstico de investimento: o que reabilitar, o que substituir.</dd>
+        </dl>
+      </div>
+      <div class="photo grow"><span class="k">Foto</span><span class="t">Equipe de O&amp;M em rota de manutenção</span></div>
+    </div>
+  </div>
+  <img class="wm" src="assets/simbolo.png" alt="">
+  <footer class="foot"><span>Norte Sul · Metropolitana Ambiental</span><span class="n">15</span></footer>
+</section></div>
+
+<!-- ============ 16 SERVIÇOS TÉCNICOS ============ -->
+<div class="slot" id="p16"><section class="sheet">
+  <header class="head"><img class="sym" src="assets/simbolo.png" alt=""><span class="sec">Serviços técnicos</span></header>
+  <p class="eyebrow" style="margin-bottom:3mm">Frente 07</p>
+  <h2 style="max-width:155mm">Conhecer a rede é o que separa investimento de gasto.</h2>
+  <p class="lead" style="margin-top:4mm;max-width:155mm">Cadastro, diagnóstico e prognóstico transformam uma rede desconhecida em um plano de ação com prioridades. É o serviço que responde à pergunta que toda prefeitura faz: onde colocar o dinheiro primeiro?</p>
+  <div class="cols cols-2" style="margin-top:8mm">
+    <div class="stack">
+      <div class="feats one" style="gap:4mm">
+        <div class="f"><svg class="ic"><use href="#i-map"/></svg><div><h3>Cadastro de redes</h3><p>Levantamento de traçado, diâmetros, materiais, profundidades, poços de visita e estado de conservação, com base em inspeção de campo e videoinspeção. Entregue em planilha, mapa e, quando solicitado, em base georreferenciada.</p></div></div>
+        <div class="f"><svg class="ic"><use href="#i-camera"/></svg><div><h3>Diagnóstico</h3><p>Análise das anomalias estruturais e hidráulicas de cada trecho e identificação das causas de alagamento, refluxo e infiltração.</p></div></div>
+        <div class="f"><svg class="ic"><use href="#i-chart"/></svg><div><h3>Prognóstico de pontos críticos</h3><p>Classificação de risco e priorização de investimento: o que limpar, o que reabilitar e o que substituir, e em que ordem.</p></div></div>
+        <div class="f"><svg class="ic"><use href="#i-doc"/></svg><div><h3>Apoio técnico a planos</h3><p>Suporte a planos de segurança da água, planos de drenagem e programas de saneamento junto a autarquias e concessionárias, como no apoio ao Plano de Segurança da Água do SEMAE de Mogi das Cruzes.</p></div></div>
+        <div class="f"><svg class="ic"><use href="#i-gear"/></svg><div><h3>Equipamentos sob medida</h3><p>Fabricação e adaptação de máquinas e acessórios para saneamento, ajustados à realidade de cada operação.</p></div></div>
+      </div>
+    </div>
+    <div class="stack">
+      <div class="box fill">
+        <p class="eyebrow">Entregáveis típicos</p>
+        <ul class="tight">
+          <li>Planilha de cadastro por trecho e por dispositivo.</li>
+          <li>Mapa da rede com pontos críticos classificados.</li>
+          <li>Relatório de videoinspeção com laudo por trecho.</li>
+          <li>Matriz de priorização: risco x custo x benefício.</li>
+          <li>Estimativa de quantidades para orçamento e licitação.</li>
+          <li>Memorial técnico para composição de edital.</li>
+        </ul>
+      </div>
+      <div class="box">
+        <p class="eyebrow">Para que serve na prática</p>
+        <p class="small">Um cadastro bem feito reduz o custo das licitações seguintes, porque o edital sai com quantidades reais. Um prognóstico bem feito evita reabilitar trecho bom e deixar o ruim para depois. E um diagnóstico bem feito resolve o alagamento na causa, não no sintoma.</p>
+      </div>
+      <div class="photo grow"><span class="k">Foto</span><span class="t">Equipe técnica em levantamento de campo</span></div>
+    </div>
+  </div>
+  <img class="wm" src="assets/simbolo.png" alt="">
+  <footer class="foot"><span>Norte Sul · Metropolitana Ambiental</span><span class="n">16</span></footer>
+</section></div>
+
+<!-- ============ 17 SITUAÇÕES EMERGENCIAIS ============ -->
+<div class="slot" id="p17"><section class="sheet">
+  <header class="head"><img class="sym" src="assets/simbolo.png" alt=""><span class="sec">Situações emergenciais</span></header>
+  <p class="eyebrow" style="margin-bottom:3mm">Frente 08</p>
+  <h2 style="max-width:155mm">Quando a chuva chega antes do planejamento.</h2>
+  <p class="lead" style="margin-top:4mm;max-width:155mm">Atendimento emergencial em situações de enchente, extravasamento de esgoto, colapso de galeria e obstrução em via pública, com equipamentos de alto desempenho e equipes prontas para mobilização rápida.</p>
+  <div class="cols cols-2" style="margin-top:8mm">
+    <div class="stack">
+      <h4 class="blue">O que atendemos</h4>
+      <div class="feats one" style="gap:3.5mm">
+        <div class="f"><svg class="ic"><use href="#i-wave"/></svg><div><h3>Alagamento e enchente</h3><p>Desobstrução imediata de bocas de lobo e galerias no ponto crítico, sucção de água acumulada e limpeza do trecho após a chuva.</p></div></div>
+        <div class="f"><svg class="ic"><use href="#i-alert"/></svg><div><h3>Extravasamento de esgoto</h3><p>Desobstrução da rede coletora ou do ramal, limpeza da via e registro da causa para correção definitiva.</p></div></div>
+        <div class="f"><svg class="ic"><use href="#i-layers"/></svg><div><h3>Colapso de galeria</h3><p>Isolamento da área, avaliação por vídeo, limpeza do trecho e encaminhamento para reparo ou CIPP-UV.</p></div></div>
+        <div class="f"><svg class="ic"><use href="#i-road"/></svg><div><h3>Obstrução em via pública</h3><p>Retirada de entulho e objetos de bocas de lobo, caixas e travessias que bloqueiam o escoamento.</p></div></div>
+      </div>
+      <div class="photo grow"><span class="k">Foto</span><span class="t">Atendimento emergencial em ponto de alagamento</span></div>
+    </div>
+    <div class="stack">
+      <div class="box bluebg">
+        <p class="eyebrow">Como funciona o acionamento</p>
+        <dl class="spec" style="color:#fff">
+          <dt style="color:#fff">1. Chamado</dt><dd>Contato pela central do contrato ou pelo fiscal.</dd>
+          <dt style="color:#fff">2. Triagem</dt><dd>Classificação por gravidade e definição do equipamento.</dd>
+          <dt style="color:#fff">3. Mobilização</dt><dd>Equipe e caminhão deslocados para o ponto.</dd>
+          <dt style="color:#fff">4. Contenção</dt><dd>Sinalização, isolamento e liberação do escoamento.</dd>
+          <dt style="color:#fff">5. Registro</dt><dd>Fotos, localização, causa provável e recomendação.</dd>
+          <dt style="color:#fff">6. Correção</dt><dd>Serviço definitivo programado para o trecho.</dd>
+        </dl>
+      </div>
+      <div class="box">
+        <p class="eyebrow">Plano de contingência para o período chuvoso</p>
+        <p class="small">Em contratos de O&amp;M, montamos com o cliente um plano para o verão: mapa dos pontos históricos de alagamento, limpeza preventiva antecipada, equipes de sobreaviso e equipamentos posicionados nas regiões de maior risco.</p>
+      </div>
+      <div class="cols cols-2" style="gap:4mm">
+        <div class="stat"><span class="v">24 h</span><span class="l">sobreaviso</span><span class="d muted">em contratos com cláusula emergencial</span></div>
+        <div class="stat"><span class="v">1</span><span class="l">chamado</span><span class="d muted">do atendimento à correção definitiva</span></div>
+      </div>
+    </div>
+  </div>
+  <img class="wm" src="assets/simbolo.png" alt="">
+  <footer class="foot"><span>Norte Sul · Metropolitana Ambiental</span><span class="n">17</span></footer>
+</section></div>
+
+<!-- ============ 18 EQUIPAMENTOS ============ -->
+<div class="slot" id="p18"><section class="sheet">
+  <header class="head"><img class="sym" src="assets/simbolo.png" alt=""><span class="sec">Equipamentos e frota</span></header>
+  <p class="eyebrow" style="margin-bottom:3mm">Tecnologia que combina desempenho e responsabilidade ambiental</p>
+  <h2 style="max-width:155mm">A ferramenta certa para cada diâmetro, cada rua e cada tipo de problema.</h2>
+  <div class="feats" style="margin-top:9mm;gap:6mm 8mm">
+    <div class="f"><svg class="ic"><use href="#i-recycle"/></svg><div><h3>Caminhão reciclador (hidrossucção)</h3><p>Limpa galerias, ramais e bocas de lobo reutilizando a água do próprio sistema. Separa os sólidos durante a operação e mantém o mesmo volume de água circulando.</p></div></div>
+    <div class="f"><svg class="ic"><use href="#i-truck"/></svg><div><h3>Caminhão combinado hidrojato e sucção</h3><p>Alta pressão para soltar o material aderido às paredes do tubo e sucção a vácuo para retirar sedimentos, areia e entulho de galerias, poços de visita e elevatórias.</p></div></div>
+    <div class="f"><svg class="ic"><use href="#i-moto"/></svg><div><h3>Kit compacto sobre motocicleta</h3><p>Desobstrução de ramais de esgoto em ruas estreitas, vielas e ladeiras, sem bloquear a via e sem mobilizar caminhão.</p></div></div>
+    <div class="f"><svg class="ic"><use href="#i-robot"/></svg><div><h3>Robô de videoinspeção (CFTV)</h3><p>Câmera com giro de 360°, carretel com registro de distância para trechos de até 120 m, sensor de inclinação e sensor laser. Operado da cabine do veículo.</p></div></div>
+    <div class="f"><svg class="ic"><use href="#i-scope"/></svg><div><h3>Câmera periscópica</h3><p>Inspeção visual rápida a partir do poço de visita para identificar obstruções, fissuras, deslocamentos e vazamentos antes de decidir a intervenção.</p></div></div>
+    <div class="f"><svg class="ic"><use href="#i-uv"/></svg><div><h3>Trem de luz UV e liner de fibra de vidro</h3><p>Conjunto para reabilitação CIPP-UV: inserção do liner, inflagem, cura por ultravioleta e reabertura de ramais por robô cortador.</p></div></div>
+    <div class="f"><svg class="ic"><use href="#i-filter"/></svg><div><h3>Desidratação de resíduos</h3><p>Separação de água e sólidos do material retirado das redes, reduzindo volume e custo de transporte até o aterro.</p></div></div>
+    <div class="f"><svg class="ic"><use href="#i-wrench"/></svg><div><h3>Equipamentos fabricados e adaptados</h3><p>Máquinas, bicos e acessórios para saneamento desenvolvidos ou adaptados pela própria empresa para a realidade de cada contrato.</p></div></div>
+  </div>
+  <div class="photos" style="margin-top:8mm;grid-template-columns:1fr 1fr 1fr">
+    <div class="photo r43"><span class="k">Foto</span><span class="t">Frota de caminhões</span></div>
+    <div class="photo r43"><span class="k">Foto</span><span class="t">Robô de videoinspeção</span></div>
+    <div class="photo r43"><span class="k">Foto</span><span class="t">Equipamento CIPP-UV</span></div>
+  </div>
+  <img class="wm" src="assets/simbolo.png" alt="">
+  <footer class="foot"><span>Norte Sul · Metropolitana Ambiental</span><span class="n">18</span></footer>
+</section></div>
+
+<!-- ============ 19 SUSTENTABILIDADE E SEGURANÇA ============ -->
+<div class="slot" id="p19"><section class="sheet dark">
+  <header class="head"><img class="sym" src="assets/simbolo-white.png" alt=""><span class="sec">Sustentabilidade e segurança</span></header>
+  <h2 style="max-width:155mm">Cuidar da rede sem descuidar de quem está em cima dela.</h2>
+  <p class="lead" style="margin-top:4mm;max-width:150mm;opacity:.9">Água reaproveitada, resíduo com destino certo, obra sem vala e equipe protegida. Isso vale em todas as frentes, todos os dias.</p>
+  <div class="cols cols-2" style="margin-top:9mm">
+    <div class="stack">
+      <h4>Ambiental</h4>
+      <div class="feats one" style="gap:3.5mm">
+        <div class="f"><svg class="ic"><use href="#i-recycle"/></svg><div><h3>Reuso de água na limpeza</h3><p>O caminhão reciclador filtra e reaproveita a água do próprio sistema, reduzindo o consumo de água potável em cada turno de trabalho.</p></div></div>
+        <div class="f"><svg class="ic"><use href="#i-filter"/></svg><div><h3>Resíduo com rastreabilidade</h3><p>Desidratação, pesagem, transporte com manifesto e destinação em aterro licenciado. O cliente recebe a documentação.</p></div></div>
+        <div class="f"><svg class="ic"><use href="#i-road"/></svg><div><h3>Menos escavação, menos entulho</h3><p>O método não destrutivo elimina bota-fora, recomposição asfáltica e emissões de obra em toda a extensão do trecho.</p></div></div>
+        <div class="f"><svg class="ic"><use href="#i-drop"/></svg><div><h3>Menos perdas de água</h3><p>Redes reabilitadas param de infiltrar e de vazar. Menos água tratada perdida, menos esgoto no solo e nos córregos.</p></div></div>
+      </div>
+    </div>
+    <div class="stack">
+      <h4>Segurança do trabalho</h4>
+      <div class="feats one" style="gap:3.5mm">
+        <div class="f"><svg class="ic"><use href="#i-helmet"/></svg><div><h3>Espaço confinado</h3><p>Trabalho em poços de visita e galerias segue procedimento de espaço confinado: medição de gases, ventilação, vigia e resgate.</p></div></div>
+        <div class="f"><svg class="ic"><use href="#i-alert"/></svg><div><h3>Sinalização viária</h3><p>Isolamento e sinalização da área de trabalho conforme as normas de trânsito, com cones, placas e sinalizadores.</p></div></div>
+        <div class="f"><svg class="ic"><use href="#i-shield"/></svg><div><h3>EPI e procedimentos</h3><p>Equipamentos de proteção individual e procedimento operacional padrão por tipo de serviço, com registro de treinamento.</p></div></div>
+        <div class="f"><svg class="ic"><use href="#i-school"/></svg><div><h3>Treinamento contínuo</h3><p>Operadores capacitados para os equipamentos da frota e reciclagem periódica dos treinamentos obrigatórios.</p></div></div>
+      </div>
+      <div class="box white">
+        <p class="eyebrow">Equipe por contrato</p>
+        <p class="small">Operadores treinados, encarregado de campo, engenheiro responsável e apoio administrativo para medições e relatórios. Toda a operação acompanha as normas de segurança do trabalho aplicáveis ao serviço.</p>
+      </div>
+    </div>
+  </div>
+  <div class="photos" style="margin-top:8mm;grid-template-columns:1fr 1fr 1fr">
+    <div class="photo r43"><span class="k">Foto</span><span class="t">Equipe com EPI em espaço confinado</span></div>
+    <div class="photo r43"><span class="k">Foto</span><span class="t">Sinalização de área de trabalho</span></div>
+    <div class="photo r43"><span class="k">Foto</span><span class="t">Destinação de resíduos</span></div>
+  </div>
+  <footer class="foot"><span>Norte Sul · Metropolitana Ambiental</span><span class="n">19</span></footer>
+</section></div>
+
+<!-- ============ 20 EXPERIÊNCIA E HABILITAÇÃO ============ -->
+<div class="slot" id="p20"><section class="sheet">
+  <header class="head"><img class="sym" src="assets/simbolo.png" alt=""><span class="sec">Experiência e habilitação</span></header>
+  <p class="eyebrow" style="margin-bottom:3mm">Para quem já trabalhamos</p>
+  <h2 style="max-width:155mm">Quem contrata saneamento público precisa de quem já entregou saneamento público.</h2>
+  <p class="lead" style="margin-top:4mm;max-width:155mm">Nossa carteira é formada principalmente por órgãos públicos e companhias de saneamento do estado de São Paulo, atendidos por contrato direto ou por licitação, com todas as exigências de habilitação, medição e fiscalização que esse mercado pede.</p>
+  <div class="list" style="margin-top:7mm">
+    <div class="it"><h3>Prefeitura de São Paulo</h3><p>Manutenção do sistema de microdrenagem desde os anos 2000: limpeza para recuperação da capacidade de captação e escoamento, conservação de bocas de lobo, ramais, poços de visita e galerias, cadastro e inspeção por CFTV de áreas com alagamento recorrente. Contrato de limpeza mecanizada do sistema de drenagem firmado em 2024.</p></div>
+    <div class="it"><h3>Subprefeituras da capital</h3><p>Serviços de limpeza de galerias, córregos e canais, e manutenção do sistema de drenagem com hidrojato, sucção e reciclador, desidratação e transporte de resíduos e atendimento emergencial em enchentes. Entre elas, Ermelino Matarazzo e São Miguel Paulista.</p></div>
+    <div class="it"><h3>SANASA · Campinas</h3><p>Reabilitação de trechos de rede de esgoto em tubulação cerâmica de 150 mm pelo método CIPP-UV, sem abertura de vala.</p></div>
+    <div class="it"><h3>SEMAE · Mogi das Cruzes</h3><p>Apoio técnico ao desenvolvimento do Plano de Segurança da Água da autarquia.</p></div>
+  </div>
+  <div class="cols cols-2" style="margin-top:7mm">
+    <div class="stack">
+      <h4 class="blue">Por que Norte Sul + Metropolitana</h4>
+      <ul class="tight">
+        <li><strong>Ciclo completo.</strong> Inspeção, limpeza, obra, reabilitação e gestão com a mesma equipe.</li>
+        <li><strong>Tecnologia de trabalho.</strong> Caminhão reciclador, robô de videoinspeção e CIPP-UV reduzem transtorno, água e tempo de obra.</li>
+        <li><strong>Experiência com o setor público.</strong> Trinta e cinco anos atendendo prefeituras, autarquias e concessionárias.</li>
+        <li><strong>Duas empresas, uma operação.</strong> Capacidade de mobilização ampliada e um único responsável perante o cliente.</li>
+        <li><strong>Associada à ABRATT.</strong> Parte da comunidade brasileira de tecnologia não destrutiva.</li>
+      </ul>
+    </div>
+    <div class="stack">
+      <h4 class="blue">Habilitação</h4>
+      <dl class="spec">
+        <dt>Razão social</dt><dd>Norte-Sul Hidrotecnologia e Comércio Ltda.</dd>
+        <dt>CNPJ</dt><dd>38.980.710/0001-06 (matriz, Hortolândia)</dd>
+        <dt>Fundação</dt><dd>22 de junho de 1990</dd>
+        <dt>Atividade principal</dt><dd>Atividades relacionadas a esgoto</dd>
+        <dt>Secundárias</dt><dd>Gestão de resíduos, descontaminação, fabricação de equipamentos para saneamento</dd>
+        <dt>Empresa aliada</dt><dd>Metropolitana Ambiental Ltda.</dd>
+      </dl>
+      <p class="small muted">Atestados de capacidade técnica, certidões e documentação de habilitação disponíveis sob solicitação.</p>
+    </div>
+  </div>
+  <img class="wm" src="assets/simbolo.png" alt="">
+  <footer class="foot"><span>Norte Sul · Metropolitana Ambiental</span><span class="n">20</span></footer>
+</section></div>
+
+<!-- ============ 21 CONTATO / CONTRACAPA ============ -->
+<div class="slot" id="p21"><section class="sheet dark">
   <header class="head"><img class="sym" src="assets/simbolo-white.png" alt=""><span class="sec">Contato</span></header>
   <h2 style="max-width:150mm">Vamos conversar sobre a sua rede.</h2>
   <p class="lead" style="margin-top:4mm;max-width:140mm;opacity:.9">Envie o escopo, o edital ou só a dúvida. Respondemos com uma proposta técnica e, se fizer sentido, uma visita de diagnóstico.</p>
   <div class="contact" style="margin-top:12mm">
     <div>
-      <p class="k">Sede · Hortolândia</p>
+      <p class="k"><svg class="ic sm"><use href="#i-pin"/></svg>Sede · Hortolândia</p>
       <p class="v">Rua Oralinda Moraes Simões, 9<br>Chácaras Nova Boa Vista<br>Hortolândia, SP · CEP 13185-077<br><b>(19) 3281-3537</b></p>
     </div>
     <div>
-      <p class="k">Escritório · São Paulo</p>
+      <p class="k"><svg class="ic sm"><use href="#i-pin"/></svg>Unidades · São Paulo</p>
       <p class="v">Atendimento à capital e Região Metropolitana<br><b>(11) 2016-2862</b><br>WhatsApp <b>(11) 94002-0943</b></p>
     </div>
     <div>
-      <p class="k">E-mail</p>
+      <p class="k"><svg class="ic sm"><use href="#i-mail"/></svg>E-mail</p>
       <p class="v"><b>comercial@nortesultec.com.br</b></p>
     </div>
     <div>
-      <p class="k">Na web</p>
+      <p class="k"><svg class="ic sm"><use href="#i-globe"/></svg>Na web</p>
       <p class="v">nortesultec.com.br<br>Instagram @nortesulhidrotecnologia<br>Facebook /NorteSulHidrotecnologia</p>
     </div>
   </div>
@@ -528,7 +967,7 @@ strong{font-weight:700}
     <div style="width:.6pt;height:20mm;background:rgba(255,255,255,.5)"></div>
     <img src="assets/metropolitana-white.png" alt="Metropolitana Ambiental" style="height:24mm;width:auto">
   </div>
-  <footer class="foot"><span>Norte Sul · Metropolitana Ambiental · Portfólio 2026</span><span class="n">11</span></footer>
+  <footer class="foot"><span>Norte Sul · Metropolitana Ambiental · Portfólio 2026</span><span class="n">21</span></footer>
 </section></div>
 
 </div>
