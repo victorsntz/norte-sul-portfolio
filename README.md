@@ -8,3 +8,9 @@ Portfólio de serviços em formato A4 (22 páginas), feito em HTML para impress�
 - `Portfolio-NorteSul-Metropolitana.pdf` — PDF final, A4, 22 páginas, gerado com Nimbus Sans (clone da Helvetica com as mesmas métricas).
 
 Tipografia: Helvetica. Cores: azul #005AAA e preto #201E1F, retiradas dos logos.
+
+## Stand 4 × 3 m
+
+- `stand/Stand-NorteSul-4x3m.html` — painel em escala real (1 mm = 1 mm), imagens embutidas. Abra no navegador e exporte em PDF com papel personalizado 4000 × 3000 mm.
+- `stand/Stand-NorteSul-4x3m.pdf` — PDF já exportado, 4000 × 3000 mm, fontes embutidas.
+- A foto de fundo veio do PDF original em baixa resolução. Para impressão final, substitua pela imagem em alta.
