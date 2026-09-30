@@ -1,6 +1,6 @@
 # Portfólio Norte Sul + Metropolitana Ambiental
 
-Portfólio de serviços em formato A4 (21 páginas), feito em HTML para impressão.
+Portfólio de serviços em formato A4 (22 páginas), feito em HTML para impressão.
 
 - `index.html` — o portfólio. Abra no navegador e use Ctrl+P / Cmd+P com margens em "nenhuma" e "imprimir fundos" ligado para gerar o PDF final.
 - `assets/` — logos recortados (versões azul/preto e branca) usados nas páginas.
