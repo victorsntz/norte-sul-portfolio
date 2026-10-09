@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Unidades que Atendemos</title>
+<style>
+/* Painel 2,00 m x 1,25 m, fundo transparente, tudo em vetor. Escala sem perda para qualquer tamanho. */
+:root{
+  --navy:#0B2A4F;
+  --azul:#005AAA;
+  --azul2:#1C7FD6;
+  --azul3:#5EB3F2;
+  --fonte:"Helvetica Neue",Helvetica,"Nimbus Sans TT","Nimbus Sans",Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:transparent;font-family:var(--fonte)}
+.panel{width:2000mm;height:1250mm;position:relative;overflow:hidden;background:transparent}
+.title{position:absolute;left:90mm;top:70mm}
+.title .bar{width:120mm;height:9mm;background:var(--azul2);border-radius:5mm;margin-bottom:22mm}
+.title h1{margin:0;font-size:120mm;line-height:1;font-weight:700;color:var(--navy);letter-spacing:-.02em}
+.title p{margin:18mm 0 0;font-size:36mm;letter-spacing:.32em;text-transform:uppercase;color:var(--azul);font-weight:400}
+svg.map{position:absolute;left:0;top:0;width:2000mm;height:1250mm}
+.pill{fill:var(--azul2)}
+.pill-t{font-size:34px;font-weight:700;fill:#fff;letter-spacing:.02em}
+.lead{stroke:var(--azul2);stroke-width:3px;fill:none}
+.pin{fill:#fff;stroke:var(--azul);stroke-width:3px}
+.pin-c{fill:var(--azul)}
+</style>
+</head>
+<body>
+<section class="panel">
+  <div class="title">
+    <div class="bar"></div>
+    <h1>Unidades que Atendemos</h1>
+    <p>Presença em diversas regiões do Brasil</p>
+  </div>
+  <svg class="map" viewBox="0 0 2000 1250" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1C7FD6"/><stop offset="1" stop-color="#004A8F"/></linearGradient>
+      <filter id="sh" x="-10%" y="-10%" width="130%" height="130%"><feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#003a70" flood-opacity=".28"/></filter>
+    </defs>
+    <polygon points="1043.6,354.2 986.7,396.1 924.4,418.1 888.9,336.6 835.6,402.7 775.1,429.1 721.8,543.6 720.0,605.3 650.7,611.9 675.6,660.4 728.9,693.4 803.6,667.0 888.9,748.5 933.3,814.6 928.0,880.6 938.7,935.7 977.8,979.7 995.6,1015.0 1008.0,1045.8 968.9,1089.9 940.4,1116.3 1015.1,1193.4 1075.6,1111.9 1102.2,1045.8 1111.1,1012.8 1141.3,979.7 1182.2,957.7 1219.6,955.5 1237.3,913.7 1258.7,869.6 1271.1,825.6 1272.9,781.5 1280.0,737.5 1306.7,693.4 1342.2,638.4 1345.8,605.3 1338.7,565.7 1297.8,550.3 1262.2,517.2 1221.3,515.0 1176.9,504.0 1137.8,473.2 1102.2,462.2 1075.6,440.1 1057.8,407.1" fill="url(#g)" filter="url(#sh)" stroke="#fff" stroke-width="6" stroke-linejoin="round"/>
+<polyline class="lead" points="480,658.0 1088.9,818.5"/><rect class="pill" x="60" y="620" width="420" height="76" rx="38.0"/><text class="pill-t" x="270.0" y="670.0" text-anchor="middle">Goiânia - GO</text><polyline class="lead" points="480,778.0 1146.7,965.4"/><rect class="pill" x="60" y="740" width="420" height="76" rx="38.0"/><text class="pill-t" x="270.0" y="790.0" text-anchor="middle">Alto Tietê</text><polyline class="lead" points="480,898.0 1143.3,969.2"/><rect class="pill" x="60" y="860" width="420" height="76" rx="38.0"/><text class="pill-t" x="270.0" y="910.0" text-anchor="middle">Mogi das Cruzes - SP</text><polyline class="lead" points="480,1018.0 1125.0,954.6"/><rect class="pill" x="60" y="980" width="420" height="76" rx="38.0"/><text class="pill-t" x="270.0" y="1030.0" text-anchor="middle">Hortolândia - SP</text><polyline class="lead" points="1520,438.0 1280.0,736.8"/><rect class="pill" x="1520" y="400" width="420" height="76" rx="38.0"/><text class="pill-t" x="1730.0" y="450.0" text-anchor="middle">Salvador - BA</text><polyline class="lead" points="1520,548.0 1106.1,867.9"/><rect class="pill" x="1520" y="510" width="420" height="76" rx="38.0"/><text class="pill-t" x="1730.0" y="560.0" text-anchor="middle">Uberlândia - MG</text><polyline class="lead" points="1520,658.0 1137.4,860.4"/><rect class="pill" x="1520" y="620" width="420" height="76" rx="38.0"/><text class="pill-t" x="1730.0" y="670.0" text-anchor="middle">Patos de Minas - MG</text><polyline class="lead" points="1520,768.0 1196.4,955.5"/><rect class="pill" x="1520" y="730" width="420" height="76" rx="38.0"/><text class="pill-t" x="1730.0" y="780.0" text-anchor="middle">Rio de Janeiro - RJ</text><polyline class="lead" points="1520,878.0 1135.5,969.8"/><rect class="pill" x="1520" y="840" width="420" height="76" rx="38.0"/><text class="pill-t" x="1730.0" y="890.0" text-anchor="middle">São Paulo - SP</text><polyline class="lead" points="1520,988.0 1127.8,955.5"/><rect class="pill" x="1520" y="950" width="420" height="76" rx="38.0"/><text class="pill-t" x="1730.0" y="1000.0" text-anchor="middle">Campinas - SP</text><polyline class="lead" points="1520,1098.0 1099.9,1045.6"/><rect class="pill" x="1520" y="1060" width="420" height="76" rx="38.0"/><text class="pill-t" x="1730.0" y="1110.0" text-anchor="middle">Balneário - SC</text><circle class="pin" cx="1088.9" cy="818.5" r="19"/><circle class="pin-c" cx="1088.9" cy="818.5" r="8"/><circle class="pin" cx="1146.7" cy="965.4" r="19"/><circle class="pin-c" cx="1146.7" cy="965.4" r="8"/><circle class="pin" cx="1143.3" cy="969.2" r="19"/><circle class="pin-c" cx="1143.3" cy="969.2" r="8"/><circle class="pin" cx="1125.0" cy="954.6" r="19"/><circle class="pin-c" cx="1125.0" cy="954.6" r="8"/><circle class="pin" cx="1280.0" cy="736.8" r="19"/><circle class="pin-c" cx="1280.0" cy="736.8" r="8"/><circle class="pin" cx="1106.1" cy="867.9" r="19"/><circle class="pin-c" cx="1106.1" cy="867.9" r="8"/><circle class="pin" cx="1137.4" cy="860.4" r="19"/><circle class="pin-c" cx="1137.4" cy="860.4" r="8"/><circle class="pin" cx="1196.4" cy="955.5" r="19"/><circle class="pin-c" cx="1196.4" cy="955.5" r="8"/><circle class="pin" cx="1135.5" cy="969.8" r="19"/><circle class="pin-c" cx="1135.5" cy="969.8" r="8"/><circle class="pin" cx="1127.8" cy="955.5" r="19"/><circle class="pin-c" cx="1127.8" cy="955.5" r="8"/><circle class="pin" cx="1099.9" cy="1045.6" r="19"/><circle class="pin-c" cx="1099.9" cy="1045.6" r="8"/>
+  </svg>
+</section>
+</body>
+</html>
