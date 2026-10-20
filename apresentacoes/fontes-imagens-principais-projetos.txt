@@ -1,0 +1,21 @@
+Principais Projetos (Feira 2026) - origem das imagens
+
+Fotos da Norte Sul (arquivo da empresa / site / Drive)
+- Capa: caminhão combinado (Drive Norte Sul)
+- 01 Guarujá: barco no emissário (site Norte Sul, legenda "Guarujá (Emissário Submarino) - rompimento 1997/8")
+- 02 ETE Parque Novo Mundo: fotos de grade e poço do arquivo da apresentação institucional (CONFIRMAR se são da ETE)
+- 03 Micro drenagem: equipe em PV, robô de TV, sistema de gestão georreferenciado (arquivo institucional)
+- 04 Desidratação: baias de desidratação (arquivo institucional)
+- 05 Itajaí: foto da enchente no site Norte Sul
+- 06 Córrego Limpo: teste de fumaça e teste de corante (arquivo institucional)
+- 07 Jardim Romano: caminhões na enchente (arquivo institucional)
+- 08 Performance: software de televisionamento e tablet de inspeção (arquivo institucional / Drive)
+- 11 Reciclagem: material reciclado (RESIDUOS.jpg) e reciclador piloto (post Tela04 do Drive)
+- 12 Belém: robô sonar (folder Norte Sul)
+
+Fotos de contexto do local (Pinterest), não mostram o serviço
+- 09 Rio de Janeiro (Botafogo): https://www.pinterest.com/pin/e1_AfqPShygqPlMZu2y36-jJmexSGr2upSk4SKu-_3iGBu1ViMosuNu/ (fonte: fuiserviajante.com)
+- 10 Pampulha: https://www.pinterest.com/pin/e1_AfqPShzLWWi2LdcuQ7OMimNui3_SmGAACoIv2d7E-Ts5WUrFi6UR/
+- 12 Belém (orla): https://www.pinterest.com/pin/e1_AfqPShyTGfukHu-EsyJKtM3XyKbtisRZeMyEh3sJKIxXysr4wnIm/
+
+Fotos pequenas (02, 03, 07, 08) ampliadas com Real-ESRGAN.
